@@ -1,0 +1,760 @@
+/* Grundlegendes Styling alle Seiten*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./fonts/Poppins-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./fonts/Poppins-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('./fonts/OpenSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('./fonts/OpenSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+:root {
+    --base-bg-color: #FFFFFF;
+    --base-bg-color-rgb: 255, 255, 255;
+    --base-color: #666666;
+    --headline-color: #0F0100;
+
+    --primary-color: #0F0100;
+    --primary-rgb: 15, 1, 0;
+    --primary-alpha: 1;
+
+    --accent-color: #3B6C9B;
+    --focus-outline-color: #8AB1CC;
+
+    --secondary-color: #F5F5F5;
+
+    /* Schriften */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Open Sans', sans-serif;
+
+    /* Feste Schriftgrößen in rem (px/18) */
+    --font-size-base: 18px;
+    --font-size-h1: 2.2rem;
+    --font-size-h2: 1.7rem;
+    --font-size-h3: 1.7rem;
+    --font-size-h4: 1.5rem;
+    --font-size-h5: 1.3rem;
+    --font-size-h6: 1rem;
+
+    --font-size-17: 0.94rem;
+    --font-size-30: 1.67rem;
+
+    /* Dynamische Größen für H1,H2 u big title */
+    --font-size-h1-fluid: clamp(2.22rem, 5vw, 3.88rem);
+    --font-size-h2-fluid: clamp(1.66rem, 4vw, 2.77rem);
+    --font-size-big-title: clamp(2.22rem, 6vw, 5.55rem);
+
+    /* Schriftstärken */
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    --container-max-width: 1350px;
+}
+
+body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-base);
+    line-height: 1.2;
+    color: var(--base-color);
+    background-color: var(--base-bg-color);
+    margin: 0;
+    padding: 0;
+}
+
+
+main{margin-top: 90px}
+
+.main-container {
+    max-width: var(--container-max-width); /* 1350px */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    width: 100%; /*damits auch auf großen Bildschirmen über volle Breite geht*/
+    height: 90px;
+    z-index: 3000;
+    box-shadow: 0px 10px 10px -5px var(--primary-color); /* Schlagschatten */
+}
+
+button {
+    font-family: var(--font-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    border: 1px solid;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: var(--font-size-h1-fluid);
+}
+
+h2 {
+    font-size: var(--font-size-h2-fluid);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-regular);
+}
+
+h4 {
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-regular);
+}
+
+h5 {
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-regular);
+}
+
+h6 {
+    font-size: var(--font-size-h6);
+    font-weight: var(--font-weight-regular);
+}
+
+p{font-size: var(--font-size-base);
+    font-family: var(--font-secondary);
+    color: var(--base-color);}
+
+img{max-width: 100%;
+    height: auto;
+    display: block;}
+
+.image-overlay {
+    position: relative;
+    display: block; /* Flexibler Bild-Wrapper */
+    width: 100%; /* Anpassung Elternbreite */
+    height: auto;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+}
+
+.image-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Schwarzes Overlay mit 40% Trans */
+    z-index: 1;
+    mix-blend-mode: hard-light; /* Overlay-Effekt lt XD */
+    pointer-events: none; /* Overlay blockiert keine Klicks */
+}
+
+
+.image-overlay img {
+    display: block;
+    width: 100%;
+    height: auto; /* Skaliert  Bild proportional */
+    z-index: 0;
+    object-fit: cover;
+}
+
+
+
+#special-font-subheader{font-family: var(--font-primary);
+    color: var(--font-secondary);
+    max-width: 786px;}
+
+nav.container {
+    display: flex; /* Flexbox innerhalb des Containers */
+    justify-content: space-between; /* Abstand zwischen Logo und Navigation */
+    align-items: center; /* Vertikale Zentrierung */
+    max-width: var(--container-max-width);
+    margin: 0 auto; /* Zentriert Container horizontal */
+    height: 100%; /* Passt sich Header-Höhe an */
+    position: relative;
+    z-index: 2000;
+}
+
+#header-logo{
+    max-width: 108.43px;
+    height: auto;
+    padding-left: 20px;}
+
+.navigation{
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    padding-right: 20px;
+    margin: 0;
+}
+
+.navigation li{position: relative;}
+
+.navigation a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+}
+
+.dropdown-menu
+{position: absolute;
+    top: 100%;
+    background-color: var(--focus-outline-color);
+    list-style: none;
+    padding: 10px 30px 10px 10px;
+    display: none;}
+
+.dropdown-menu a{
+    text-transform: none;
+    font-size: var(--font-size-17);
+    font: var(--font-primary);
+    color: var(--primary-color);
+}
+
+
+/* Hover-Effekt im Dropdown*/
+.dropdown-menu a:hover {
+    color: var(--accent-color);
+}
+
+/* Markierung Current */
+.navigation .current {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.dropdown-icon, .dropdown-toggle{display: none;}
+
+.dropdown-label .icon-Icon {
+    display: none;
+}
+.dropdown-label{text-transform: uppercase;
+    color: var(--secondary-color);}
+
+
+/*Template Layout*/
+
+/*Hero*/
+
+.hero {
+    background-image: url("img/jason-wang-NxAwryAbtIw-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: 100vh;
+    color:var(--base-bg-color);
+    position: relative;
+    display: flex; /* Flexbox aktivieren */
+    align-items: center; /* vertikal zentrieren */
+    aspect-ratio: unset;
+}
+
+.hero .above-level {
+    z-index: 2;
+}
+
+/*alle Children v hero container sollen unterhalb 30px haben*/
+.hero .above-level > * {margin-bottom: 30px;}
+/*letztes child nicht*/
+.hero .above-level > *:last-child {
+    margin-bottom: 0; /* Kein Abstand beim letzten Kind */
+}
+
+.umbruch{max-width: 782px; color: var(--base-bg-color);}
+
+.herobutton {
+    background-color: transparent;
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.herobutton:hover {
+    border-color: var(--accent-color); /* Rahmenfarbe ändern */
+    color: var(--accent-color);       /* Schriftfarbe ändern */
+    cursor: pointer;                         /* Zeigt an, dass es klickbar ist */
+}
+
+.herobutton:active{
+    background-color: var(--focus-outline-color);
+    color: var(--primary-color);
+    outline: none;
+    border: none;}
+
+.herobutton:focus{
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--focus-outline-color);}
+
+
+/*Schriften-Sektion*/
+/*Big Title*/
+
+.big-title-section {
+    background-color: var(--accent-color);
+    width: 100%;
+    max-height: 136px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 50px;
+    padding-top: 50px;
+    margin-bottom: 127px;
+}
+
+.big-title-inner-section{
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.big-title{
+    color: var(--base-bg-color);
+    font-size: var(--font-size-big-title);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    margin: 0;
+    z-index: 1;
+    line-height: 1;
+}
+
+.big-title::before {
+    content: ""; /* Erzeugt ein leeres Pseudo-Element */
+    position: absolute;
+    bottom: 0; /* Startet unten */
+    left: 0;
+    right: 0;
+    height: 10px; /* Definiert, wie viel vom Titel abgeschnitten werden soll */
+    background: var(--accent-color); /
+z-index: 2;
+}
+
+/*Headlines*/
+
+.headlines>*{margin-bottom: 40px;}
+
+.bold{font-weight: bold;}
+
+
+.accent-button{
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    font-size: var(--font-size-17);
+    border: none;
+    display: inline-block;
+    font-family: var(--font-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    margin-top: 50px;
+}
+
+/*Gallery-Section*/
+
+.section-margin{padding-top: 125px;
+    padding-bottom: 106px;}
+
+
+/* Basis-Styles für mobile Geräte */
+.gallery-grid {
+    padding-top: 125px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px; /* kleinerer Abstand auf mobilen Geräten */
+}
+
+/* Neuer Selektor: NUR .image-overlay IN .gallery-grid */
+.gallery-grid .image-overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 120, 255, 0.4);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+
+.gallery-item {
+    max-width: 100%;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+
+.gallery-nav{
+    max-width: var(--container-max-width);
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.gallery-nav ul{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    list-style: none;
+    max-width: 252px;
+    gap: 10px;
+}
+
+.page-link{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: var(--font-size-17);
+    color: var(--primary-color);
+    padding: 8px 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--secondary-color);
+    border-radius: 3px;
+    width: 24px;
+    height: 24px;
+}
+
+.page-link.active{
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    pointer-events: none;
+}
+
+.gallery-nav .icon-Icon{color: var(--accent-color);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-nav .icon-Icon.turned {
+    transform: rotate(180deg); /* Spiegelung des Icons */
+}
+
+
+/*Kundenstimme*/
+
+#feedback{
+    max-width: 654px;
+    text-align: center;
+}
+
+#feedback-headline{text-transform: uppercase;
+    margin-bottom: 40px;
+    font-size: var(--font-size-h3);
+    font-family: var(--font-primary);
+    color: #2F2F2A;}
+
+#feedback-quote{margin:0 30px 15px 30px;
+}
+
+#feedback-name{font-weight: bold;}
+
+
+
+/*Footer*/
+
+#footer-background{background-color:
+        var(--primary-color); padding: 80px 0;}
+
+#footer-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;}
+
+.footer-logo img{
+    width: 100%;
+    max-width: 328px;
+    min-width: 108px;
+    min-height: 27px;
+    height: auto;
+    padding-right: 40px}
+
+.footer-links{display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;}
+
+.footer-links p{color: var(--focus-outline-color);
+    text-transform:
+            uppercase;
+    margin-bottom: 20px;
+    font-family: var(--font-primary);}
+
+.footer-links ul{list-style: none;
+    padding: 0; margin: 0}
+
+.footer-links ul a{text-decoration: none;
+    color: var(--base-bg-color);
+    font-family: var(--font-primary);}
+
+.footer-links ul li{margin-bottom: 5px;}
+
+.icon-arrow-4{
+    color: var(--base-bg-color);display: inline-block;
+    transform: scaleX(-1); margin-right: 5px;
+}
+
+
+
+/*Footer-Responsiv*/
+
+@media (max-width: 767px) {
+    #footer-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin: 0 auto 20px;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+
+    .footer-links ul {
+        text-align: left;
+    }
+}
+
+
+/* Gallery Grid Section responsiv machen*/
+
+/* Ab 768px: Zwei Spalten (Tablet) */
+@media (min-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Ab 1024px: Drei Spalten (Desktop) */
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0; /* hier kannst du den Abstand ggf. anpassen */
+    }
+}
+
+
+.image-text {
+    position: absolute;
+    bottom: 17px;
+    left: 17px;
+    color: var(--base-bg-color);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-30);
+    text-transform: uppercase;
+    z-index: 3; /* höher als both Overlays */
+    opacity: 1; /* auf Mobile / Tablet sofort sichtbar */
+    transition: opacity 0.3s ease;
+    font-weight: var(--font-weight-bold);
+}
+
+@media (min-width: 1024px) {
+    .gallery-grid .image-text {
+        opacity: 0;
+    }
+
+    /* Falls du den Text auch nur in der Gallery einblenden möchtest: */
+    .gallery-grid .image-overlay:hover .image-text {
+        opacity: 1;
+    }
+    .gallery-grid .image-overlay:hover::after {
+        opacity: 1;
+    }
+}
+
+/*Mobile Navigation/Burgerbutton*/
+
+/* Burger-Button */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    margin-right: 20px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1100;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle-checkbox {
+    display: none;
+}
+
+/* X-Button (sichtbar bei geöffnetem mobilem Menü) */
+.menu-close {
+    display: none; /* Standardmäßig ausgeblendet */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+    z-index: 1100;
+}
+
+/* Sichtbarkeit von Buttons steuern */
+.menu-toggle-checkbox:checked ~ .menu-toggle {
+    display: none; /* Burger-Button ausblenden */
+}
+
+.menu-toggle-checkbox:checked ~ .menu-close {
+    display: block; /* X-Button anzeigen */
+}
+
+
+
+/* Burger-Button und X ausblenden in der Desktop-Ansicht */
+@media (min-width: 768px) {
+    .menu-toggle,
+    .menu-close {
+        display: none; /* Beide Buttons ausblenden */
+    }
+}
+/*neu*/
+@media (max-width: 767px) {
+    /* Der Wrapper: füllt 100% Breite, ist schwarz und fixiert */
+    .mobile-menu-wrapper {
+        display: none; /* Standard: unsichtbar */
+        position: fixed;
+        top: 90px;         /* knapp unter dem Header */
+        left: 0;
+        margin-top: 2px;
+        width: 100%;
+        height: calc(100% - 90px);
+        background: var(--primary-color);
+        z-index: 1000;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Bei aktivierter Checkbox einblenden */
+    .menu-toggle-checkbox:checked ~ .mobile-menu-wrapper {
+        display: block;
+        transform: translateY(0);
+    }
+
+    /* Das eigentliche UL-Menü in Blau (nur 90% davon) */
+    .navigation {
+        width: 90%;
+        height: 100%;
+        background: var(--accent-color);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    /* Navigation-Elemente stylen */
+    .navigation li {
+        list-style: none;
+        border-bottom: 1px solid var(--focus-outline-color);
+        padding: 15px 0;
+    }
+    .navigation a {
+        display: block;
+        padding-left: 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: var(--secondary-color);
+    }
+}
+/*neu*/
+
+@media (max-width: 767px) {
+    .dropdown-label {
+        display: flex;                 /* Text links, Icon rechts */
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;                   /* Füllt das <li> komplett aus */
+        padding: 0 20px;           /* Klickfläche definieren */
+        cursor: pointer;
+    }
+
+    .dropdown-label .icon-Icon {
+        color: var(--base-bg-color);   /* z.B. Weiß */
+        transform: rotate(90deg);      /* Drehung wenn gewünscht */
+        display: inline-flex;
+    }
+
+    /* Per Checkbox-Klick öffnen */
+    .dropdown-toggle:checked ~ .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu
+    {position: static;
+        width: 100%;
+        background-color: var(--focus-outline-color);
+        list-style: none;
+        display: none;}
+
+    .dropdown-menu a{
+        text-transform: none;
+        font: var(--font-primary);
+        color: var(--primary-color);
+    }
+}
+
+@media (min-width: 768px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+

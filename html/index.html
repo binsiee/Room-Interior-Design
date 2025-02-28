@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <title>Room - Interior Design</title>
+    <meta name="description" content="Interior Design - Exklusives Möbeldesign">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/icons/style.css">
+</head>
+<body>
+
+<header>
+    <nav class="container">
+        <img src="img/logo-interior.svg" alt="logo rooms" id="header-logo">
+        <!-- Versteckte Checkbox -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+
+        <!-- Label für Burger-Button (geschlossen) -->
+        <label for="menu-toggle" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <!-- Label für X-Button (offen) -->
+        <label for="menu-toggle" class="menu-close">
+            ✕
+        </label>
+        <div class="mobile-menu-wrapper">
+        <ul class="navigation">
+            <li><a class="bold" href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li class="dropdown">
+
+                <!-- Checkbox für das Dropdown -->
+                <input type="checkbox" id="toggle-referenzen"
+                       class="dropdown-toggle">
+
+                <label for="toggle-referenzen" class="dropdown-label">
+                    Referenzen
+                    <span class="icon-Icon"></span>
+                </label>
+
+                <ul class="dropdown-menu">
+                    <!-- Checkbox als Toggle -->
+
+                    <li><a href="#">Wohnzimmer</a></li>
+                    <li><a href="#">Schlafzimmer</a></li>
+                    <li><a href="#">Küche</a></li>
+                </ul>
+
+            </li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- Beginn Startseite -->
+
+<main>
+    <section class="hero image-overlay">
+        <div class="main-container above-level">
+        <h1 class="umbruch">Interior Design Studio</h1>
+        <p id="special-font-subheader">Entdecken Sie zeitlose Eleganz bei Interior - Ihr Studio für <br> exklusives Möbeldesign </p>
+        <button href="#" class="herobutton">Jetzt kontaktieren </button>
+        </div>
+    </section>
+
+    <!--Schriften-Sektion-->
+
+    <div class="big-title-section">
+        <div class="main-container big-title-inner-section">
+        <p class="big-title">
+            Big Title</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+
+        <section class="headlines">
+
+        <h1>Headline 1</h1>
+
+        <h2>Headline 2</h2>
+
+        <h3>Headline 3</h3>
+
+        <h4>Headline 4</h4>
+
+        <h5>Headline 5</h5>
+
+        <h6>Headline 6</h6>
+
+        </section>
+
+        <div>
+
+        <p> Absatz Überall <span class="bold">dieselbe alte
+            Leier.</span>
+            Das Layout ist fertig, der Text lässt
+            auf sich warten.
+            Damit <a href="#"> das Layout</a> nun nicht nackt im Raume
+            steht und sich klein und leer vorkommt,
+            <br>
+            <br>
+            springe ich ein: der Blindtext. Genau zu
+            diesem Zwecke erschaffen, immer im
+            Schatten meines großen Bruders
+            »Lorem Ipsum«, freue ich mich jedes Mal,
+            wenn Sie ein paar Zeilen lesen. Denn esse
+            est percipi - Sein ist wahrgenommen werden.</p>
+
+            <a href="#" class="accent-button">Button</a>
+
+        </div>
+
+    </div>
+
+
+    <!--6 Bilder-->
+
+    <section class="main-container">
+        <div class="gallery-grid ">
+
+            <div class="image-overlay">
+            <img src="img/id-interiors-3B8t4vnkXt0-unsplash.jpg" alt="Wohnzimmer" class="gallery-item">
+                    <p class="image-text">Wohnzimmer<br>Sowow</p>
+            </div>
+
+            <div class="image-overlay">
+                <img src="img/lotus-design-n-print-0sDzRgrN_pI-unsplash.jpg" alt="Wohnzimmer" class="gallery-item image-overlay">
+                <p class="image-text">Wohnzimmer<br>Solight</p>
+            </div>
+
+            <div class="image-overlay">
+                <img src="img/r-architecture-TRCJ-87Yoh0-unsplash.jpg" alt="Küche" class="gallery-item image-overlay">
+                    <p class="image-text">Küche<br>Cookbar</p>
+            </div>
+
+            <div class="image-overlay">
+                <img src="img/roberto-nickson-tleCJiDOri0-unsplash.jpg" alt="Esszimmer" class="gallery-item image-overlay">
+                <p class="image-text">Esszimmer<br>Pano</p>
+            </div>
+
+            <div class="image-overlay">
+                <img src="img/spacejoy-GNs831kqdoM-unsplash.jpg" alt="Garderobe" class="gallery-item image-overlay">
+                <p class="image-text">Vorzimmer<br>Style</p>
+            </div>
+
+            <div class="image-overlay">
+                <img src="img/spacejoy-tAuc4H7Qf9s-unsplash.jpg" alt="Schlafzimmer" class="gallery-item image-overlay">
+                <p class="image-text">Schlafzimmer<br>Luxury</p>
+            </div>
+
+        </div>
+
+        <nav class="gallery-nav">
+            <ul>
+                <li><span class="icon-Icon turned"></span></li>
+                <li><a href="#" class="page-link">1</a></li>
+                <li><a href="#" class="page-link">2</a></li>
+                <li><a href="#" class="page-link active">3</a></li>
+                <li><a href="#" class="page-link">...</a></li>
+                <li><a href="#" class="page-link">13</a></li>
+                <li><span class="icon-Icon"></span></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section id="feedback" class="section-margin main-container">
+        <p id="feedback-headline">Kundenstimme</p>
+        <blockquote>
+            <p id="feedback-quote">„Bei Interior verstehen wir, dass jedes Zuhause einzigartig ist. Deshalb bieten wir maßgeschneiderte Möbeldesignlösungen.“</p>
+            <cite id="feedback-name">Marta</cite>
+        </blockquote>
+    </section>
+
+</main>
+
+<footer id="footer-background">
+
+    <div id="footer-section" class="main-container">
+<div class="footer-logo">
+    <img src="img/logo-interior.svg" alt="logo rooms">
+</div>
+
+    <div class="footer-links">
+<div>
+    <p>Sitemap</p>
+    <ul>
+        <li><a href="#"><span class="icon-arrow-4">
+            </span>Home</a></li>
+        <li><a  href="#"><span class="icon-arrow-4">
+            </span>About</a></li>
+        <li><a  href="#"><span class="icon-arrow-4">
+            </span>Referenzen</a></li>
+        <li><a  href="#"><span class="icon-arrow-4">
+            </span>Kontakt</a></li>
+    </ul>
+    </div>
+
+<div>
+    <p>Legal</p>
+    <ul class>
+        <li>
+            <a href="#"><span class="icon-arrow-4">
+            </span>Datenschutz</a></li>
+        <li><a  href="#"><span class="icon-arrow-4">
+            </span>Impressum</a></li>
+        <li><a href="#"><span class="icon-arrow-4">
+            </span>AGB</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+</footer>
+
+
+
+</body>
+
+
+</html>
+
