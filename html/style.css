@@ -822,10 +822,7 @@ padding-right: 40px}
     display: flex;
     justify-content: space-between ;
     align-items: top;
-    max-width: var(--container-max-width);
-    width: 100%;
-    margin: 0 auto;
-    padding: 125px 20px 106px;}
+    padding: 125px 40px 106px;}
 
 .bulletpoints-width{max-width: 427px;
     flex: 1; padding-right: 20px}

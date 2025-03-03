@@ -269,8 +269,287 @@ function interior_design_customize_register( $wp_customize ) {
         'section' => 'hero_section',
         'type'    => 'url',
     ) );
+
+    // ------------------------------
+    // Block 1: "Hochwertige Wohnlösungen für ihr zuhause"
+    // ------------------------------
+    $wp_customize->add_section( 'content_block_1', array(
+        'title'    => __( 'Hauptblock 1', 'interior-design-translation' ),
+        'priority' => 40,
+    ) );
+
+    // Überschrift Block 1
+    $wp_customize->add_setting( 'block1_headline', array(
+        'default'           => 'Vorschautext',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'block1_headline', array(
+        'label'    => __( 'Überschrift Block 1', 'interior-design-translation' ),
+        'section'  => 'content_block_1',
+        'type'     => 'text',
+    ) );
+
+    // Text Block 1
+    $wp_customize->add_setting( 'block1_text', array(
+        'default'           => 'Vorschautext',
+        'sanitize_callback' => 'wp_kses_post',
+    ) );
+    $wp_customize->add_control( 'block1_text', array(
+        'label'    => __( 'Text Block 1', 'interior-design-translation' ),
+        'section'  => 'content_block_1',
+        'type'     => 'textarea',
+    ) );
+
+    // Bild Block 1
+    $wp_customize->add_setting( 'block1_image', array(
+        'default'           => get_template_directory_uri() . '/img/roberto-nickson-tleCJiDOri0-unsplash.jpg',
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'block1_image', array(
+        'label'    => __( 'Bild Block 1', 'interior-design-translation' ),
+        'section'  => 'content_block_1',
+        'settings' => 'block1_image',
+    ) ) );
+
+
+    // ------------------------------
+    // Block 2: "Nachhaltigkeit und Qualität im Fokus"
+    // ------------------------------
+    $wp_customize->add_section( 'content_block_2', array(
+        'title'    => __( 'Hauptblock 2', 'interior-design-translation' ),
+        'priority' => 41,
+    ) );
+
+    // Bild Block 2
+    $wp_customize->add_setting( 'block2_image', array(
+        'default'           => get_template_directory_uri() . '/img/r-architecture-TRCJ-87Yoh0-unsplash.jpg',
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'block2_image', array(
+        'label'    => __( 'Bild Block 2', 'interior-design-translation' ),
+        'section'  => 'content_block_2',
+        'settings' => 'block2_image',
+    ) ) );
+
+    // Überschrift Block 2
+    $wp_customize->add_setting( 'block2_headline', array(
+        'default'           => 'Vorschautext',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'block2_headline', array(
+        'label'    => __( 'Überschrift Block 2', 'interior-design-translation' ),
+        'section'  => 'content_block_2',
+        'type'     => 'text',
+    ) );
+
+    // Text Block 2
+    $wp_customize->add_setting( 'block2_text', array(
+        'default'           => 'Vorschautext',
+        'sanitize_callback' => 'wp_kses_post',
+    ) );
+    $wp_customize->add_control( 'block2_text', array(
+        'label'    => __( 'Text Block 2', 'interior-design-translation' ),
+        'section'  => 'content_block_2',
+        'type'     => 'textarea',
+    ) );
+
+    // Button Text Block 2
+    $wp_customize->add_setting( 'block2_button_text', array(
+        'default'           => 'Vorschautext',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'block2_button_text', array(
+        'label'    => __( 'Button Text Block 2', 'interior-design-translation' ),
+        'section'  => 'content_block_2',
+        'type'     => 'text',
+    ) );
+
+    // Button Link Block 2
+    $wp_customize->add_setting( 'block2_button_link', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'block2_button_link', array(
+        'label'    => __( 'Button Link Block 2', 'interior-design-translation' ),
+        'section'  => 'content_block_2',
+        'type'     => 'url',
+    ) );
+
+
+/***********************************
+ * Bulletpoints Section
+ ***********************************/
+$wp_customize->add_section( 'bulletpoints_section', array(
+    'title'    => __( 'Bulletpoints', 'interior-design-translation' ),
+    'priority' => 42,
+) );
+
+/* ========== BULLETPOINT 1 ========== */
+
+// Icon-Klasse
+$wp_customize->add_setting( 'bullet1_icon', array(
+    'default'           => 'icon-icon-5',
+    'sanitize_callback' => 'sanitize_text_field',
+) );
+$wp_customize->add_control( 'bullet1_icon', array(
+    'label'    => __( 'Icon 1', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'text',
+) );
+
+// Überschrift
+$wp_customize->add_setting( 'bullet1_headline', array(
+    'default'           => 'Vorschautext',
+    'sanitize_callback' => 'sanitize_text_field',
+) );
+$wp_customize->add_control( 'bullet1_headline', array(
+    'label'    => __( 'Überschrift Bullet 1', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'text',
+) );
+
+// Text
+$wp_customize->add_setting( 'bullet1_text', array(
+    'default'           => 'Vorschautext',
+    'sanitize_callback' => 'wp_kses_post',
+) );
+$wp_customize->add_control( 'bullet1_text', array(
+    'label'    => __( 'Text Bullet 1', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'textarea',
+) );
+
+/* ========== BULLETPOINT 2 ========== */
+$wp_customize->add_setting( 'bullet2_icon', array(
+    'default'           => 'icon-icon-4',
+    'sanitize_callback' => 'sanitize_text_field',
+) );
+$wp_customize->add_control( 'bullet2_icon', array(
+    'label'    => __( 'Icon 2', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'text',
+) );
+
+$wp_customize->add_setting( 'bullet2_headline', array(
+    'default'           => 'Vorschautext',
+    'sanitize_callback' => 'sanitize_text_field',
+) );
+$wp_customize->add_control( 'bullet2_headline', array(
+    'label'    => __( 'Überschrift Bullet 2', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'text',
+) );
+
+$wp_customize->add_setting( 'bullet2_text', array(
+    'default'           => 'Vorschautext',
+    'sanitize_callback' => 'wp_kses_post',
+) );
+$wp_customize->add_control( 'bullet2_text', array(
+    'label'    => __( 'Text Bullet 2', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'textarea',
+) );
+
+/* ========== BULLETPOINT 3 ========== */
+$wp_customize->add_setting( 'bullet3_icon', array(
+    'default'           => 'icon-icon-6',
+    'sanitize_callback' => 'sanitize_text_field',
+) );
+$wp_customize->add_control( 'bullet3_icon', array(
+    'label'    => __( 'Icon 3', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'text',
+) );
+
+$wp_customize->add_setting( 'bullet3_headline', array(
+    'default'           => 'Vorschautext',
+    'sanitize_callback' => 'sanitize_text_field',
+) );
+$wp_customize->add_control( 'bullet3_headline', array(
+    'label'    => __( 'Überschrift Bullet 3', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'text',
+) );
+
+$wp_customize->add_setting( 'bullet3_text', array(
+    'default'           => 'Vorschautext',
+    'sanitize_callback' => 'wp_kses_post',
+) );
+$wp_customize->add_control( 'bullet3_text', array(
+    'label'    => __( 'Text Bullet 3', 'interior-design-translation' ),
+    'section'  => 'bulletpoints_section',
+    'type'     => 'textarea',
+) );
+
+/***********************************
+ * Parallax Section
+ * ***********************************/
+    $wp_customize->add_section( 'parallax_section', array(
+        'title'    => __( 'Parallax', 'interior-design-translation' ),
+        'priority' => 43,
+    ) );
+
+// Hintergrundbild
+    $wp_customize->add_setting( 'parallax_bg_image', array(
+        'default'           => get_template_directory_uri() . '/img/nastuh-abootalebi-eHD8Y1Znfpk-unsplash.jpg',
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'parallax_bg_image', array(
+        'label'    => __( 'Hintergrundbild', 'interior-design-translation' ),
+        'section'  => 'parallax_section',
+        'settings' => 'parallax_bg_image',
+    ) ) );
+
+// Überschrift
+    $wp_customize->add_setting( 'parallax_headline', array(
+        'default'           => 'Überschrift',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'parallax_headline', array(
+        'label'    => __( 'Überschrift', 'interior-design-translation' ),
+        'section'  => 'parallax_section',
+        'type'     => 'text',
+    ) );
+
+// Listenpunkte
+    for ( $i = 1; $i <= 5; $i++ ) {
+        $wp_customize->add_setting( "parallax_list{$i}", array(
+            'default'           => "Listenpunkt {$i}",
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( "parallax_list{$i}", array(
+            'label'    => sprintf( __( 'Listenpunkt %d', 'interior-design-translation' ), $i ),
+            'section'  => 'parallax_section',
+            'type'     => 'text',
+        ) );
+
+    }
 }
 
+add_action('customize_register', 'interior_design_customize_register');
+
+/************************************************
+ * CUSTOM POST TYPE: Kundenstimmen
+ ************************************************/
+function interior_register_testimonial_cpt() {
+
+    register_post_type( 'testimonial', [
+        'label'                 => __( 'Kundenstimmen', 'interior-design-translation' ),
+        'public'                => false,      // Keine öffentliche Detailseite
+        'show_ui'               => true,       // Im Backend sichtbar
+        'exclude_from_search'    => true,      // Nicht in der Suche
+        'publicly_queryable'    => false,      // Keine Permalinks
+        'show_in_nav_menus'     => false,
+        'supports'              => [ 'title', 'editor' ],
+        // title => z.B. Name der Person
+        // editor => der eigentliche Text (Kundenstimme)
+        'menu_icon'             => 'dashicons-format-quote', // nettes Icon im Backend
+    ] );
+}
+add_action( 'init', 'interior_register_testimonial_cpt' );
 
 
 

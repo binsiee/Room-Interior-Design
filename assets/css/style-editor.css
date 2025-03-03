@@ -156,11 +156,13 @@ h6 {
 
 .herobutton {
     background-color: transparent;
-    border: 1px solid var(--secondary-color);
+    border-color: var(--secondary-color);
     color: var(--secondary-color);
+    font-family: var(--font-primary);
     text-decoration: none;
-    padding: 10px 28px;
     text-transform: uppercase;
+    padding: 10px 28px;
+    border: 1px solid;
 }
 
 .herobutton:hover {

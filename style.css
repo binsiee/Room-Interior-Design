@@ -17,39 +17,7 @@ Requires PHP: 8.1
     box-sizing: border-box;
 }
 
-/* poppins-regular - latin */
-@font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    src: url('assets/fonts/poppins-v22-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* poppins-700 - latin */
-@font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    src: url('assets/fonts/poppins-v22-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
 
-/* open-sans-regular - latin */
-@font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/open-sans-v40-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* open-sans-700 - latin */
-@font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../fonts/open-sans-v40-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
 
 :root {
     --base-bg-color: #FFFFFF;
@@ -125,13 +93,6 @@ header {
     box-shadow: 0px 10px 10px -5px var(--primary-color); /* Schlagschatten */
 }
 
-button {
-    font-family: var(--font-primary);
-    text-decoration: none;
-    text-transform: uppercase;
-    padding: 10px 28px;
-    border: 1px solid;
-}
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
@@ -181,7 +142,6 @@ img{max-width: 100%;
     width: 100%; /* Anpassung Elternbreite */
     height: auto;
     overflow: hidden;
-    aspect-ratio: 1/1;
 }
 
 .image-overlay::before {
@@ -246,6 +206,11 @@ nav.container {
     color: var(--secondary-color);
 }
 
+/* Hover-Effekt für alle Hauptmenüpunkte */
+.nav-menu li > a:hover {
+    color: var(--focus-outline-color);
+}
+
 .sub-menu
 {position: absolute;
     top: 100%;
@@ -267,10 +232,11 @@ nav.container {
     color: var(--accent-color);
 }
 
-/* Markierung Current */
-.navigation .current {
+/* Markierung Current (WordPress-Klasse) */
+.nav-menu .current-menu-item > a,
+.nav-menu .current_page_item > a,
+.nav-menu .current_page_ancestor > a {
     font-weight: bold;
-    color: var(--accent-color);
 }
 
 .dropdown-icon, .dropdown-toggle{display: none;}
@@ -317,6 +283,11 @@ nav.container {
     background-color: transparent;
     border-color: var(--secondary-color);
     color: var(--secondary-color);
+    font-family: var(--font-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    border: 1px solid;
 }
 
 .herobutton:hover {
@@ -818,6 +789,9 @@ z-index: 2;
     display: inline-block;
     align-self: flex-start;
     margin-top: 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 28px;
 }
 
 @media (max-width: 1023px) {
@@ -848,10 +822,7 @@ z-index: 2;
     display: flex;
     justify-content: space-between ;
     align-items: top;
-    max-width: var(--container-max-width);
-    width: 100%;
-    margin: 0 auto;
-    padding: 125px 20px 106px;}
+    padding: 125px 40px 106px;}
 
 .bulletpoints-width{max-width: 427px;
     flex: 1; padding-right: 20px}
@@ -907,15 +878,27 @@ z-index: 2;
 }
 
 .parallax-content ul {
-    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .parallax-content ul > li {
     margin-bottom: 18px;
+    color: var(--base-color);
 }
 
 .parallax-content ul > li:last-child {
     margin-bottom: 0;
+}
+
+.icon-check::before {
+    content: "\e905";
+    font-family: 'icomoon';
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    margin-right: 8px;
 }
 
 /*Admin-Bar nach unten schieben*/
