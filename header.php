@@ -19,8 +19,10 @@ language_attributes(); ?> class="no-js">
 <a href="#content" class="screen-reader-text"><?php
     _e('Zum Inhalt springen', 'interior-design-translation'); ?></a>
 
-<nav class="container" id="header-logo">
-    <div>
+<header>
+
+<nav class="container">
+    <div  id="header-logo">
         <?php
         if (function_exists('the_custom_logo')) {
             the_custom_logo();
@@ -52,3 +54,4 @@ language_attributes(); ?> class="no-js">
     ?>
 
 </nav>
+    </header>

@@ -17,32 +17,38 @@ Requires PHP: 8.1
     box-sizing: border-box;
 }
 
+/* poppins-regular - latin */
 @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Poppins';
-    src: url('./fonts/Poppins-Regular.woff2') format('woff2');
-    font-weight: 400;
     font-style: normal;
+    font-weight: 400;
+    src: url('assets/fonts/poppins-v22-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-
+/* poppins-700 - latin */
 @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Poppins';
-    src: url('./fonts/Poppins-Bold.woff2') format('woff2');
-    font-weight: 700;
     font-style: normal;
+    font-weight: 700;
+    src: url('assets/fonts/poppins-v22-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
+/* open-sans-regular - latin */
 @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Open Sans';
-    src: url('./fonts/OpenSans-Regular.woff2') format('woff2');
+    font-style: normal;
     font-weight: 400;
-    font-style: normal;
+    src: url('../fonts/open-sans-v40-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-
+/* open-sans-700 - latin */
 @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Open Sans';
-    src: url('./fonts/OpenSans-Bold.woff2') format('woff2');
-    font-weight: 700;
     font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/open-sans-v40-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 :root {
@@ -217,28 +223,30 @@ nav.container {
     z-index: 2000;
 }
 
-#header-logo{
-    max-width: 108.43px;
+#header-logo {
+    max-width: 109px;
     height: auto;
-    padding-left: 20px;}
+    padding-left: 20px;
+}
 
-.navigation{
+.nav-menu{
     display: flex;
     list-style: none;
     gap: 2rem;
     padding-right: 20px;
     margin: 0;
+    align-items: center;
 }
 
-.navigation li{position: relative;}
+.nav-menu li{position: relative;}
 
-.navigation a {
+.nav-menu a {
     text-decoration: none;
     text-transform: uppercase;
     color: var(--secondary-color);
 }
 
-.dropdown-menu
+.sub-menu
 {position: absolute;
     top: 100%;
     background-color: var(--focus-outline-color);
@@ -246,7 +254,7 @@ nav.container {
     padding: 10px 30px 10px 10px;
     display: none;}
 
-.dropdown-menu a{
+.sub-menu a{
     text-transform: none;
     font-size: var(--font-size-17);
     font: var(--font-primary);
@@ -255,7 +263,7 @@ nav.container {
 
 
 /* Hover-Effekt im Dropdown*/
-.dropdown-menu a:hover {
+.sub-menu a:hover {
     color: var(--accent-color);
 }
 
@@ -545,7 +553,12 @@ z-index: 2;
     color: var(--base-bg-color);display: inline-block;
     transform: scaleX(-1); margin-right: 5px;
 }
-
+.icon-arrow-4::before {
+    content: "\e903";
+    font-family: "icomoon";
+    font-size: 1em;
+    display: inline-block;
+}
 
 
 /*Footer-Responsiv*/
@@ -749,14 +762,14 @@ z-index: 2;
         display: block;
     }
 
-    .dropdown-menu
+    .sub-menu
     {position: static;
         width: 100%;
         background-color: var(--focus-outline-color);
         list-style: none;
         display: none;}
 
-    .dropdown-menu a{
+    .sub-menu a{
         text-transform: none;
         font: var(--font-primary);
         color: var(--primary-color);
@@ -764,9 +777,157 @@ z-index: 2;
 }
 
 @media (min-width: 768px) {
-    .dropdown:hover .dropdown-menu {
+    .nav-menu li:hover .sub-menu {
         display: block;
     }
 }
 
 
+/*Startseite CSS*/
+
+/* zweite u dritte Section unter hero = secondary-section*/
+
+.content-block{padding: 106px 0;
+}
+
+.secondary-section{
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Alle direkten Kinder (jede Spalte) bekommt flex, um Inhalt zu zentrieren */
+.secondary-section > div {
+    flex: 1;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Inhalt horizontal in der Spalte zentrieren */
+    justify-content: flex-start; /* Inhalt oben ausrichten */
+}
+
+.secondary-section .headline h2:first-child {
+    margin-top: 0;
+}
+
+.secondary-section-two-bg-color {background-color: var(--secondary-color);}
+
+.secondary-button {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    border: none;
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 25px;
+}
+
+@media (max-width: 1023px) {
+    /* 1) Für alle secondary-sections: einspaltiges Layout */
+    .secondary-section {
+        flex-direction: column;
+    }
+
+
+    /* 2) Nur im ersten .content-block (im DOM die 2. <section>), Reihenfolge tauschen */
+    .content-block:nth-of-type(2) .secondary-section > div:first-child {
+        order: 2; /* Text */
+    }
+    .content-block:nth-of-type(2) .secondary-section > div:last-child {
+        order: 1; /* Bild */
+    }
+
+    .secondary-section .headline h2 {
+        padding-top: 20px;
+    }
+
+}
+
+
+/* 3 Bulletpoints */
+
+.bulletpoints{
+    display: flex;
+    justify-content: space-between ;
+    align-items: top;
+    max-width: var(--container-max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 125px 20px 106px;}
+
+.bulletpoints-width{max-width: 427px;
+    flex: 1; padding-right: 20px}
+
+.bulletpoints-header{display: flex;
+    gap: 15px;margin-bottom: 22px;
+    align-items: center;}
+
+@media (max-width: 767px) {
+    .bulletpoints {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .bulletpoints-width {
+        max-width: 100%;
+        padding-right: 0;
+    }
+}
+
+
+/*Parallax-Sektion*/
+
+.parallax-background {
+    background-image: url("img/nastuh-abootalebi-eHD8Y1Znfpk-unsplash.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 30px 20px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Vermeidet Überlappung */
+}
+
+.parallax-outer-box{
+    display: flex;
+    justify-content: flex-start; /* Links ausrichten inner-box */
+}
+
+.parallax-inner-box {max-height: 570px;
+    background-color: rgba(var(--base-bg-color-rgb), 0.9);
+    padding:52px 32px;
+    z-index: 2;
+    position: relative;}
+
+.parallax-content{max-width: 510px;}
+
+.parallax-content h2 {
+    margin-bottom: 18px;
+}
+
+.parallax-content ul {
+    margin-bottom: 0;
+}
+
+.parallax-content ul > li {
+    margin-bottom: 18px;
+}
+
+.parallax-content ul > li:last-child {
+    margin-bottom: 0;
+}
+
+/*Admin-Bar nach unten schieben*/
+
+@media screen and (min-width: 600px) {
+    body.admin-bar header {
+        top: 32px;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    body.admin-bar header {
+        top: 46px;
+    }
+}
