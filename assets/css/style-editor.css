@@ -1,157 +1,156 @@
 /* CSS für den WordPress Editor (Gutenberg) */
 
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+
+:root {
+    --base-bg-color: #FFFFFF;
+    --base-bg-color-rgb: 255, 255, 255;
+    --base-color: #666666;
+    --headline-color: #0F0100;
+
+    --primary-color: #0F0100;
+    --primary-rgb: 15, 1, 0;
+    --primary-alpha: 1;
+
+    --accent-color: #3B6C9B;
+    --focus-outline-color: #8AB1CC;
+
+    --secondary-color: #F5F5F5;
+
+    /* Schriften */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Open Sans', sans-serif;
+
+    /* Feste Schriftgrößen in rem (px/18) */
+    --font-size-base: 18px;
+    --font-size-h1: 2.2rem;
+    --font-size-h2: 1.7rem;
+    --font-size-h3: 1.7rem;
+    --font-size-h4: 1.5rem;
+    --font-size-h5: 1.3rem;
+    --font-size-h6: 1rem;
+
+    --font-size-17: 0.94rem;
+    --font-size-30: 1.67rem;
+
+    /* Dynamische Größen für H1,H2 u big title */
+    --font-size-h1-fluid: clamp(2.22rem, 5vw, 3.88rem);
+    --font-size-h2-fluid: clamp(1.66rem, 4vw, 2.77rem);
+    --font-size-big-title: clamp(2.22rem, 6vw, 5.55rem);
+
+    /* Schriftstärken */
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    --container-max-width: 1350px;
+}
+
 body {
-    --base-bg-color: #241345;
-    --base-color: #FFFFFF;
-    --navbar-bg-color: #33487E;
-    --primary-color: #00c0ff;
-    --primary-rgb: 0, 192, 255;
-    --secondary-color: #3A2B71;
-    --nav-height-mobile: 60px;
-    --nav-height-desktop: 100px;
-    --base-gradient: linear-gradient(40deg, var(--base-bg-color) 0, var(--navbar-bg-color) 100%);
-
-    background: var(--base-gradient);
-    background-attachment: fixed;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-base);
+    line-height: 1.2;
     color: var(--base-color);
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: 17px;
-    line-height: 1.4;
+    background-color: var(--base-bg-color);
+    margin: 0;
+    padding: 0;
 }
 
-.editor-post-title__block,
-.editor-post-title__input {
-    font-weight: 600;
-    font-size: clamp(1.765em, 5vw, 70px);
-    line-height: 1.1;
-    margin-top: 2em;
 
-    &::after {
-        content: "";
-        display: block;
-        width: 90px;
-        height: 4px;
-        background-color: var(--primary-color);
-        transform: translateX(-10px)
-    }
-}
-
-/* Headlines */
-h1, h2, h3, h4, h5, h6, strong {
-    font-weight: 600
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+    text-transform: uppercase;
 }
 
 h1 {
-    font-size: clamp(1.765em, 5vw, 70px);
-    line-height: 1.1;
-    margin-top: 2em
+    font-size: var(--font-size-h1-fluid);
 }
 
 h2 {
-    font-size: clamp(1.53em, 4vw, 40px);
-    line-height: 1.1
+    font-size: var(--font-size-h2-fluid);
 }
 
 h3 {
-    font-size: 1.4em
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-regular);
 }
 
 h4 {
-    font-size: 1.2em
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-regular);
 }
 
 h5 {
-    font-size: 1.1em
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-regular);
 }
 
 h6 {
-    font-size: 1em
+    font-size: var(--font-size-h6);
+    font-weight: var(--font-weight-regular);
 }
 
-.is-style-headline::after {
-    content: "";
-    display: block;
-    width: 90px;
-    height: 4px;
-    background-color: var(--primary-color);
-    transform: translateX(-10px)
+p{font-size: var(--font-size-base);
+    font-family: var(--font-secondary);
+    color: var(--base-color);}
+
+
+img{max-width: 100%;
+    height: auto;
+    display: block;}
+
+.main-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-
-/* *********
- * BUTTON Styles
- */
-.wp-block-button .wp-block-button__link,
-.wp-block-button.is-style-outline .wp-block-button__link,
-.btn {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--base-color);
-    border-radius: 25px;
-    font-size: 1rem;
-    line-height: 46px;
-    height: 50px;
-    cursor: pointer;
-    padding: 0 1.7rem;
-    white-space: nowrap;
-    border: 2px solid var(--primary-color);
-    text-decoration: none;
-    transition: color 350ms ease-in-out, background-color 350ms ease-in-out, box-shadow 300ms linear
-}
-
-.wp-block-button.is-style-outline .wp-block-button__link {
-    background-color: transparent;
-    border-color: var(--base-color)
-}
-
-.wp-block-button .wp-block-button__link:hover,
-.btn:hover {
-    background-color: var(--base-color);
-    border-color: var(--base-color);
-    color: var(--primary-color);
-    box-shadow: 0 3px 6px rgba(var(--primary-rgb), 0.2);
-    text-decoration: none
-}
-
-.wp-block-button.is-style-outline .wp-block-button__link:hover {
-    color: var(--primary-color);
-    border-color: var(--primary-color)
-}
-
-.wp-block-button .wp-block-button__link:active,
-.btn:active {
-    color: var(--primary-color);
-    text-decoration: none;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.6)
-}
-
-/*Startseiten CSS*/
-
-/* ===== Hero Section Styles für den Editor ===== */
-.hero {
-    background-image: url("img/jason-wang-NxAwryAbtIw-unsplash.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    color: var(--base-bg-color);
+.image-overlay {
     position: relative;
-    display: flex;
-    align-items: center;
+    display: block; /* Flexibler Bild-Wrapper */
+    width: 100%; /* Anpassung Elternbreite */
+    height: auto;
+    overflow: hidden;
 }
 
-.hero .above-level {
-    z-index: 2;
+.image-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Schwarzes Overlay mit 40% Trans */
+    z-index: 1;
+    mix-blend-mode: hard-light; /* Overlay-Effekt lt XD */
+    pointer-events: none; /* Overlay blockiert keine Klicks */
 }
 
-.hero .above-level > * {
-    margin-bottom: 30px;
+
+.image-overlay img {
+    display: block;
+    width: 100%;
+    height: auto; /* Skaliert  Bild proportional */
+    z-index: 0;
+    object-fit: cover;
 }
 
-.umbruch {
-    max-width: 782px;
-    color: var(--base-bg-color);
+.accent-button{
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    font-size: var(--font-size-17);
+    border: none;
+    display: inline-block;
+    font-family: var(--font-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    margin-top: 50px;
 }
 
 .herobutton {
@@ -165,7 +164,36 @@ h6 {
     border: 1px solid;
 }
 
-.herobutton:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-top: 125px;
 }
+.gallery-item {
+    max-width: 100%;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+.gallery-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.page-link {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: var(--font-size-17);
+    color: var(--primary-color);
+    padding: 8px;
+    background-color: var(--secondary-color);
+    border-radius: 3px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bold{font-weight: bold;}

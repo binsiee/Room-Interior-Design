@@ -158,6 +158,7 @@ img{max-width: 100%;
 }
 
 
+
 .image-overlay img {
     display: block;
     width: 100%;
@@ -253,8 +254,7 @@ nav.container {
 /*Hero*/
 
 .hero {
-    background-image: url("img/jason-wang-NxAwryAbtIw-unsplash.jpg");
-    background-size: cover;
+    /*background-image: url("img/jason-wang-NxAwryAbtIw-unsplash.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
     max-width: 100%;
@@ -276,6 +276,8 @@ nav.container {
 .hero .above-level > *:last-child {
     margin-bottom: 0; /* Kein Abstand beim letzten Kind */
 }
+
+
 
 .umbruch{max-width: 782px; color: var(--base-bg-color);}
 
@@ -317,9 +319,9 @@ nav.container {
     max-height: 136px;
     position: relative;
     overflow: hidden;
-    margin-top: 50px;
-    padding-top: 50px;
-    margin-bottom: 127px;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 60px;
 }
 
 .big-title-inner-section{
@@ -772,7 +774,6 @@ z-index: 2;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;     /* Inhalt horizontal in der Spalte zentrieren */
     justify-content: flex-start; /* Inhalt oben ausrichten */
 }
 
@@ -799,7 +800,9 @@ z-index: 2;
     .secondary-section {
         flex-direction: column;
     }
-
+    .secondary-section .headline h2 {
+        padding-top: 20px;
+    }
 
     /* 2) Nur im ersten .content-block (im DOM die 2. <section>), Reihenfolge tauschen */
     .content-block:nth-of-type(2) .secondary-section > div:first-child {
@@ -809,9 +812,9 @@ z-index: 2;
         order: 1; /* Bild */
     }
 
-    .secondary-section .headline h2 {
-        padding-top: 20px;
-    }
+
+
+
 
 }
 
@@ -912,5 +915,87 @@ z-index: 2;
 @media screen and (max-width: 599px) {
     body.admin-bar header {
         top: 46px;
+    }
+}
+
+/*CSS für Single Post Layout*/
+
+.post-hero {
+    background-position: center;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: 100vh;
+    color:var(--base-bg-color);
+    position: relative;
+    display: flex; /* Flexbox aktivieren */
+    align-items: center; /* vertikal zentrieren */
+    aspect-ratio: unset;
+    margin-bottom: 140px;
+}
+
+.post-hero .post-above-level {
+    z-index: 2;
+}
+
+.post-content-block{margin: 0;
+}
+
+.post-content-block > * {
+    margin-bottom: 30px;
+}
+
+.post-section-margin{padding-top: 99px;
+    padding-bottom: 125px;}
+
+.post-secondary-section{
+    display: flex;
+    align-items: flex-start;
+}
+
+
+.post-secondary-section > div {
+    flex: 1;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Inhalt oben ausrichten */
+}
+
+.post-secondary-section .headline h2:first-child {
+    margin-top: 0;
+}
+
+
+.post-hero .umbruch a,
+.post-hero .umbruch a:visited {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.post-hero .umbruch a:hover {
+    text-decoration: underline;
+}
+
+.post-hero .umbruch a:active,
+.post-hero .umbruch a:focus {
+    color: var(--focus-outline-color);
+}
+
+@media (max-width: 1023px) {
+    /* Überschreibe das Grid/Flex-Layout von WP */
+    .post-secondary-section.is-layout-grid,
+    .post-secondary-section.is-layout-flex {
+        display: flex !important;       /* Grid ausschalten, Flex einschalten */
+        flex-direction: column !important;
+    }
+
+        /* Greift nur beim ersten h2 innerhalb seiner Eltern-Spalte */
+        .post-secondary-section > div h2:first-of-type {
+            margin-top: 60px;
+        }
+
+    .post-secondary-section > div {
+        padding: 0px;
+
     }
 }

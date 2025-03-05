@@ -85,6 +85,12 @@ add_theme_support('html5', [
     'comment-form',
 ]);
 
+add_theme_support( 'block-templates' );
+
+require_once get_theme_file_path( 'block-patterns.php' );
+
+
+
 
 /*
 * register_nav_menus() registriert Navigations Menüs (ohne diese Funktion gibt es im Admin-Menü: "Design > Menüs" nicht zur Aswahl
@@ -104,13 +110,26 @@ add_theme_support('wp-block-styles');
 // Custom CSS für Gutenberg (Backend)
 add_theme_support('editor-styles');
 add_editor_style('assets/css/fonts.css');
-add_editor_style('assets/css/icons.css.css');
-add_editor_style('assets/css/style-editor.css');
+add_editor_style('assets/css/icons.css');
 
 // Responsive Embeds (ZB. YouTube Videos, Iframes) erlauben
 add_theme_support('responsive-embeds');
 
 });
+
+function custom_editor_styles() {
+    wp_enqueue_style(
+        'my-editor-styles',
+        get_template_directory_uri() . '/src/css/style-editor.css',
+        [],
+        '1.0'
+    );
+}
+add_action('enqueue_block_editor_assets', 'custom_editor_styles');
+
+
+
+
 
 
 /* ---- CSS & JS in <head> bzw. vor dem </body> einfügen [ wp_head() , wp_footer() ] ----
