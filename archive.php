@@ -56,7 +56,7 @@ get_header(); ?>
                         '</a></h2>'
                     );
                     ?>
-                    <time class="date" datetime="<?php the_time('Y-m-d'); ?>">
+                    <time datetime="<?php the_time('Y-m-d'); ?>">
                         <?php the_time('d.m.Y'); ?>
                     </time>
                 </div>
@@ -64,18 +64,8 @@ get_header(); ?>
 
         <?php endwhile; ?>
 
-        <!-- Pagination -->
-        <nav class="pagination">
-            <?php
-            echo paginate_links([
-                'prev_text' => '<span class="icon-Icon" role="img" aria-label="' . __( 'Vorherige Seite', 'wifi' ) . '"></span>',
-                'next_text' => '<span class="icon-Icon" role="img" aria-label="' . __( 'Nächste Seite', 'wifi' ) . '"></span>',
-            ]);
-            ?>
-        </nav>
-
     <?php else : ?>
-        <h2><?php _e( 'Es wurden keine Beiträge gefunden.', 'wifi' ); ?></h2>
+        <p class="main-container"><?php _e( 'Es wurden keine Beiträge gefunden.', 'interior-design-translation' ); ?></p>
     <?php endif; ?>
 
 </div><!-- /.post-content-block -->
