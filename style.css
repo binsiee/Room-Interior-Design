@@ -449,7 +449,7 @@ nav.container {
 }
 
 
-.page-link.active{
+.page-link .current {
     background-color: var(--accent-color);
     color: var(--secondary-color);
     pointer-events: none;
@@ -465,15 +465,6 @@ nav.container {
     text-decoration: none;
 }
 
-.gallery-nav .icon-Icon{
-    color: var(--accent-color);
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-}
 
 .icon-Icon.wp-block-query-pagination-previous
 {transform: rotate(180deg);}
@@ -987,7 +978,6 @@ nav.container {
         align-items: flex-start;
     }
 
-
     .post-secondary-section > div {
         flex: 1;
         padding: 0 30px;
@@ -1016,7 +1006,14 @@ nav.container {
         color: var(--focus-outline-color);
     }
 
-    @media (max-width: 1023px) {
+.post-title a {
+    color: var(--primary-color);
+    text-decoration: none; }
+
+.post-title a:hover {
+    text-decoration: underline; }
+
+@media (max-width: 1023px) {
         /* Überschreibe das Grid/Flex-Layout von WP */
         .post-secondary-section.is-layout-grid,
         .post-secondary-section.is-layout-flex {
