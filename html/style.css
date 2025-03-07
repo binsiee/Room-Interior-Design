@@ -317,47 +317,35 @@ display: none;}
 
 /*Schriften-Sektion*/
 /*Big Title*/
-
 .big-title-section {
     background-color: var(--accent-color);
     width: 100%;
     max-height: 136px;
+    min-height: 100px;
     position: relative;
-    overflow: hidden;
-    margin-top: 50px;
-    padding-top: 50px;
-    margin-bottom: 127px;
+    overflow: visible; /* Damit der überstehende Teil sichtbar bleibt */
+    margin: 0;
+    padding: 0;
 }
 
-.big-title-inner-section{
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
+.big-title-inner-section {
+    position: absolute;
+
 }
 
-.big-title{
+.big-title {
     color: var(--base-bg-color);
     font-size: var(--font-size-big-title);
     font-family: var(--font-primary);
     text-transform: uppercase;
     font-weight: bold;
-    position: relative;
     margin: 0;
-    z-index: 1;
-    line-height: 1;
+    position: relative;
+    line-height: 11rem;
+    margin-top: -1rem;
 }
 
-.big-title::before {
-    content: ""; /* Erzeugt ein leeres Pseudo-Element */
-    position: absolute;
-    bottom: 0; /* Startet unten */
-    left: 0;
-    right: 0;
-    height: 10px; /* Definiert, wie viel vom Titel abgeschnitten werden soll */
-    background: var(--accent-color); /
-    z-index: 2;
-}
+
 
 /*Headlines*/
 

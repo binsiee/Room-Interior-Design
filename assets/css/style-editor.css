@@ -164,36 +164,86 @@ img{max-width: 100%;
     border: 1px solid;
 }
 
+/* Basis-Styles für mobile Geräte */
 .gallery-grid {
+    padding-top: 125px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
-    padding-top: 125px;
-}
-.gallery-item {
-    max-width: 100%;
-    margin: 0 auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-}
-.gallery-nav ul {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-.page-link {
-    text-decoration: none;
-    font-weight: bold;
-    font-size: var(--font-size-17);
-    color: var(--primary-color);
-    padding: 8px;
-    background-color: var(--secondary-color);
-    border-radius: 3px;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 10px; /* kleinerer Abstand auf mobilen Geräten */
 }
 
-.bold{font-weight: bold;}
+/* 1) Der äußere Container wird quadratisch gehalten */
+.gallery-item {
+    position: relative;
+    display: block;           /* oder flex; s.u. */
+    aspect-ratio: 1 / 1;      /* Macht den Container quadratisch */
+    overflow: hidden;         /* Bild ragt nicht über */
+    margin: 0;                /* Falls WP Standardabstände hat */
+    padding: 0;
+}
+
+/* 2) Das Bild füllt den Container vollständig */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;           /* Verhindert mögliche Lücken (inline-img) */
+
+}
+
+/* Ab 768px: Zwei Spalten (Tablet) */
+@media (min-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Ab 1024px: Drei Spalten (Desktop) */
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0; /* hier kannst du den Abstand ggf. anpassen */
+    }
+}
+
+/* Das <li> fungiert als "Positionierungs-Container" */
+.gallery-grid li {
+    position: relative;
+    margin: 0 ;
+    padding: 0 ;
+}
+
+.image-text {
+    position: absolute;
+    bottom: 17px;
+    left: 17px;
+    color: var(--base-bg-color);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-30);
+    text-transform: uppercase;
+    z-index: 2; /* höher als both Overlays */
+    opacity: 1; /* auf Mobile / Tablet sofort sichtbar */
+    transition: opacity 0.3s ease;
+    font-weight: var(--font-weight-bold);
+}
+
+@media (min-width: 1024px) {
+    .image-text {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .image-overlay::after {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Direktes Geschwister: "Nach dem :hover auf .image-overlay" */
+    .image-overlay:hover::after {
+        opacity: 1;
+    }
+    .image-overlay:hover + .image-text {
+        opacity: 1;
+    }
+}
+

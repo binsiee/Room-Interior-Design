@@ -104,10 +104,12 @@ function register_contact_page_pattern()
             'title' => __('Kontaktseite Layout', 'interior-design-translation'),
             'description' => __('Ein Block Pattern für eine Kontaktseite mit großem Titel, Einleitung und Spalten.', 'interior-design-translation'),
             'categories' => ['text', 'featured'], // Unter welchen Kategorien es im Editor erscheinen soll
-            'content' => '<!-- wp:group {"className":"big-title-section","backgroundColor":"vivid-cyan-blue","layout":{"type":"constrained"}} -->
-<div class="wp-block-group big-title-section has-vivid-cyan-blue-background-color has-background"><!-- wp:paragraph {"className":"big-title"} -->
-<p class="big-title">Kontakt</p>
+            'content' => '<!-- wp:group {"className":"big-title-section ","layout":{"type":"default"}} -->
+<div class="wp-block-group big-title-section"><!-- wp:group {"className":"big-title-inner-section main-container","layout":{"type":"constrained","contentSize":""}} -->
+<div class="wp-block-group big-title-inner-section main-container"><!-- wp:paragraph {"className":"big-title "} -->
+<p class="big-title ">Kontakt</p>
 <!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"main-container","layout":{"type":"flex","orientation":"vertical"}} -->
@@ -133,7 +135,11 @@ function register_contact_page_pattern()
 
 <!-- wp:paragraph -->
 <p><strong>Öffnungszeiten:</strong><br>Montag – Freitag: 9 – 18 Uhr<br>Samstag: 10 – 14 Uhr</p>
-<!-- /wp:paragraph --></div>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer {"height":"0px","style":{"layout":{"selfStretch":"fixed","flexSize":"65px"}}} -->
+<div style="height:0px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer --></div>
 <!-- /wp:group -->
 
 <!-- wp:cover {"url":"http://room-interior-design.local/wp-content/uploads/2025/03/mapz.png","id":46,"alt":"Maps mit Pin auf Room","dimRatio":50,"customOverlayColor":"#dadbdc","isUserOverlayColor":false,"isDark":false,"layout":{"type":"constrained"}} -->
@@ -148,4 +154,20 @@ function register_contact_page_pattern()
 add_action('init', 'register_contact_page_pattern');
 
 
+/**
+ * Title: Referenzen-Layout
+ * Slug: dein-theme/referenzen-layout
+ * Categories: text, featured
+ */
+
+register_block_pattern(
+    'room-interior-design/referenzen-layout',
+    array(
+        'title' => __('Referenzen-Layout', 'textdomain'),
+        'description' => _x('Großer Titel, Filterbuttons, 6er-Galerie.', 'Block pattern description', 'textdomain'),
+        'content' => <<<'HTML'
+<!-- Hier kommt der komplette HTML-Block-Code rein, den du aus dem Editor kopiert hast -->
+HTML
+    )
+);
 

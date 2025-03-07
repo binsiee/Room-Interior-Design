@@ -82,6 +82,7 @@ main{margin-top: 90px}
     padding: 0 20px;
 }
 
+
 header {
     position: fixed;
     top: 0;
@@ -156,8 +157,6 @@ img{max-width: 100%;
     mix-blend-mode: hard-light; /* Overlay-Effekt lt XD */
     pointer-events: none; /* Overlay blockiert keine Klicks */
 }
-
-
 
 .image-overlay img {
     display: block;
@@ -312,46 +311,30 @@ nav.container {
 
 /*Schriften-Sektion*/
 /*Big Title*/
-
 .big-title-section {
     background-color: var(--accent-color);
     width: 100%;
-    max-height: 136px;
-    position: relative;
-    overflow: hidden;
-    margin-top: 0;
-    padding-top: 0;
-    margin-bottom: 60px;
-}
-
-.big-title-inner-section{
-    height: 100%;
-    position: relative;
+    height: clamp(100px, 10vw, 136px); /* Mindesthöhe 100px, fluider Wert, Maximalhöhe 136px */
+    overflow: visible; /* Damit der überstehende Teil sichtbar bleibt */
+    margin: 0;
+    margin-bottom: 2.5rem;
+    padding: 0;
     display: flex;
     align-items: flex-end;
 }
 
-.big-title{
+.big-title-inner-section {
+    bottom: clamp(-25px, -2vw, -10px);
+}
+
+
+.big-title {
     color: var(--base-bg-color);
     font-size: var(--font-size-big-title);
     font-family: var(--font-primary);
     text-transform: uppercase;
     font-weight: bold;
-    position: relative;
     margin: 0;
-    z-index: 1;
-    line-height: 1;
-}
-
-.big-title::before {
-    content: ""; /* Erzeugt ein leeres Pseudo-Element */
-    position: absolute;
-    bottom: 0; /* Startet unten */
-    left: 0;
-    right: 0;
-    height: 10px; /* Definiert, wie viel vom Titel abgeschnitten werden soll */
-    background: var(--accent-color); /
-z-index: 2;
 }
 
 /*Headlines*/
@@ -404,18 +387,29 @@ z-index: 2;
 }
 
 
+/* 1) Der äußere Container wird quadratisch gehalten */
 .gallery-item {
-    max-width: 100%;
-    margin: 0 auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    position: relative;
+    display: block;           /* oder flex; s.u. */
+    aspect-ratio: 1 / 1;      /* Macht den Container quadratisch */
+    overflow: hidden;         /* Bild ragt nicht über */
+    margin: 0;                /* Falls WP Standardabstände hat */
+    padding: 0;
 }
 
 
-.gallery-nav{
-    max-width: var(--container-max-width);
+/* 2) Das Bild füllt den Container vollständig */
+.gallery-item img {
     width: 100%;
-    margin: 0 auto;
+    height: 100%;
+    object-fit: cover;
+    display: block;           /* Verhindert mögliche Lücken (inline-img) */
+
+}
+
+
+
+.gallery-nav{
     margin-top: 40px;
     display: flex;
     justify-content: center;
@@ -423,30 +417,37 @@ z-index: 2;
 }
 
 .gallery-nav ul{
-    display: flex;
-    justify-content: center;
-    align-content: center;
     list-style: none;
     max-width: 252px;
-    gap: 10px;
 }
 
 .page-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Der Page-Numbers-Block hat class="page-link"
+   und darin liegen <a> ... </a>
+   => style alle Links in diesem Block */
+.page-link a,
+    .page-link span {
     text-decoration: none;
     font-weight: bold;
     font-size: var(--font-size-17);
     color: var(--primary-color);
-    padding: 8px 8px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding: 8px 8px;
     background-color: var(--secondary-color);
     border-radius: 3px;
     width: 24px;
     height: 24px;
+
 }
+
 
 .page-link.active{
     background-color: var(--accent-color);
@@ -454,548 +455,583 @@ z-index: 2;
     pointer-events: none;
 }
 
-.gallery-nav .icon-Icon{color: var(--accent-color);
+.gallery-nav .icon-Icon{
+    color: var(--accent-color);
     width: 24px;
     height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.gallery-nav .icon-Icon.turned {
-    transform: rotate(180deg); /* Spiegelung des Icons */
-}
-
-
-/*Kundenstimme*/
-
-#feedback{
-    max-width: 654px;
-    text-align: center;
-}
-
-#feedback-headline{text-transform: uppercase;
-    margin-bottom: 40px;
-    font-size: var(--font-size-h3);
-    font-family: var(--font-primary);
-    color: #2F2F2A;}
-
-#feedback-quote{margin:0 30px 15px 30px;
-}
-
-#feedback-name{font-weight: bold;}
-
-
-
-/*Footer*/
-
-#footer-background{background-color:
-        var(--primary-color); padding: 80px 0;}
-
-#footer-section{
-    display: grid;
-    grid-template-columns: 1fr 1fr;}
-
-.footer-logo img{
-    width: 100%;
-    max-width: 328px;
-    min-width: 108px;
-    min-height: 27px;
-    height: auto;
-    padding-right: 40px}
-
-.footer-links{display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap:20px;}
-
-.footer-links p{color: var(--focus-outline-color);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    font-family: var(--font-primary);}
-
-.footer-links ul{list-style: none;
-    padding: 0; margin: 0}
-
-.footer-links ul a{text-decoration: none;
-    color: var(--base-bg-color);
-    font-family: var(--font-primary);}
-
-.footer-links ul li{margin-bottom: 5px;}
-
-.icon-arrow-4{
-    color: var(--base-bg-color);display: inline-block;
-    transform: scaleX(-1); margin-right: 5px;
-}
-.icon-arrow-4::before {
-    content: "\e903";
-    font-family: "icomoon";
-    font-size: 1em;
-    display: inline-block;
-}
-
-
-/*Footer-Responsiv*/
-
-@media (max-width: 767px) {
-    #footer-section {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .footer-logo {
-        margin: 0 auto 20px;
-    }
-
-    .footer-links {
-        grid-template-columns: 1fr 1fr;
-        text-align: left;
-    }
-
-    .footer-links ul {
-        text-align: left;
-    }
-}
-
-
-/* Gallery Grid Section responsiv machen*/
-
-/* Ab 768px: Zwei Spalten (Tablet) */
-@media (min-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-}
-
-/* Ab 1024px: Drei Spalten (Desktop) */
-@media (min-width: 1024px) {
-    .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0; /* hier kannst du den Abstand ggf. anpassen */
-    }
-}
-
-
-.image-text {
-    position: absolute;
-    bottom: 17px;
-    left: 17px;
-    color: var(--base-bg-color);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-30);
-    text-transform: uppercase;
-    z-index: 3; /* höher als both Overlays */
-    opacity: 1; /* auf Mobile / Tablet sofort sichtbar */
-    transition: opacity 0.3s ease;
-    font-weight: var(--font-weight-bold);
-}
-
-@media (min-width: 1024px) {
-    .gallery-grid .image-text {
-        opacity: 0;
-    }
-
-    /* Falls du den Text auch nur in der Gallery einblenden möchtest: */
-    .gallery-grid .image-overlay:hover .image-text {
-        opacity: 1;
-    }
-    .gallery-grid .image-overlay:hover::after {
-        opacity: 1;
-    }
-}
-
-/*Mobile Navigation/Burgerbutton*/
-
-/* Burger-Button */
-.menu-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 24px;
-    margin-right: 20px;
-    cursor: pointer;
-    position: relative;
-    z-index: 1100;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: var(--secondary-color);
-    transition: all 0.3s ease;
-}
-
-.menu-toggle-checkbox {
-    display: none;
-}
-
-/* X-Button (sichtbar bei geöffnetem mobilem Menü) */
-.menu-close {
-    display: none; /* Standardmäßig ausgeblendet */
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 20px;
-    font-size: 1.5rem;
-    color: var(--secondary-color);
-    cursor: pointer;
-    z-index: 1100;
-}
-
-/* Sichtbarkeit von Buttons steuern */
-.menu-toggle-checkbox:checked ~ .menu-toggle {
-    display: none; /* Burger-Button ausblenden */
-}
-
-.menu-toggle-checkbox:checked ~ .menu-close {
-    display: block; /* X-Button anzeigen */
-}
-
-
-
-/* Burger-Button und X ausblenden in der Desktop-Ansicht */
-@media (min-width: 768px) {
-    .menu-toggle,
-    .menu-close {
-        display: none; /* Beide Buttons ausblenden */
-    }
-}
-/*neu*/
-@media (max-width: 767px) {
-    /* Der Wrapper: füllt 100% Breite, ist schwarz und fixiert */
-    .mobile-menu-wrapper {
-        display: none; /* Standard: unsichtbar */
-        position: fixed;
-        top: 90px;         /* knapp unter dem Header */
-        left: 0;
-        margin-top: 2px;
-        width: 100%;
-        height: calc(100% - 90px);
-        background: var(--primary-color);
-        z-index: 1000;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    /* Bei aktivierter Checkbox einblenden */
-    .menu-toggle-checkbox:checked ~ .mobile-menu-wrapper {
-        display: block;
-        transform: translateY(0);
-    }
-
-    /* Das eigentliche UL-Menü in Blau (nur 90% davon) */
-    .navigation {
-        width: 90%;
-        height: 100%;
-        background: var(--accent-color);
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 0;
-    }
-
-    /* Navigation-Elemente stylen */
-    .navigation li {
-        list-style: none;
-        border-bottom: 1px solid var(--focus-outline-color);
-        padding: 15px 0;
-    }
-    .navigation a {
-        display: block;
-        padding-left: 20px;
-        text-decoration: none;
-        text-transform: uppercase;
-        color: var(--secondary-color);
-    }
-}
-/*neu*/
-
-@media (max-width: 767px) {
-    .dropdown-label {
-        display: flex;                 /* Text links, Icon rechts */
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;                   /* Füllt das <li> komplett aus */
-        padding: 0 20px;           /* Klickfläche definieren */
-        cursor: pointer;
-    }
-
-    .dropdown-label .icon-Icon {
-        color: var(--base-bg-color);   /* z.B. Weiß */
-        transform: rotate(90deg);      /* Drehung wenn gewünscht */
-        display: inline-flex;
-    }
-
-    /* Per Checkbox-Klick öffnen */
-    .dropdown-toggle:checked ~ .dropdown-menu {
-        display: block;
-    }
-
-    .sub-menu
-    {position: static;
-        width: 100%;
-        background-color: var(--focus-outline-color);
-        list-style: none;
-        display: none;}
-
-    .sub-menu a{
-        text-transform: none;
-        font: var(--font-primary);
-        color: var(--primary-color);
-    }
-}
-
-@media (min-width: 768px) {
-    .nav-menu li:hover .sub-menu {
-        display: block;
-    }
-}
-
-
-/*Startseite CSS*/
-
-/* zweite u dritte Section unter hero = secondary-section*/
-
-.content-block{padding: 106px 0;
-}
-
-.secondary-section{
-    display: flex;
-    align-items: flex-start;
-}
-
-/* Alle direkten Kinder (jede Spalte) bekommt flex, um Inhalt zu zentrieren */
-.secondary-section > div {
-    flex: 1;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Inhalt oben ausrichten */
-}
-
-.secondary-section .headline h2:first-child {
-    margin-top: 0;
-}
-
-.secondary-section-two-bg-color {background-color: var(--secondary-color);}
-
-.secondary-button {
-    background-color: var(--accent-color);
-    color: var(--secondary-color);
-    border: none;
-    display: inline-block;
-    align-self: flex-start;
-    margin-top: 25px;
     text-decoration: none;
-    text-transform: uppercase;
-    padding: 10px 28px;
 }
 
-@media (max-width: 1023px) {
-    /* 1) Für alle secondary-sections: einspaltiges Layout */
-    .secondary-section {
-        flex-direction: column;
-    }
-    .secondary-section .headline h2 {
-        padding-top: 20px;
-    }
-
-    /* 2) Nur im ersten .content-block (im DOM die 2. <section>), Reihenfolge tauschen */
-    .content-block:nth-of-type(2) .secondary-section > div:first-child {
-        order: 2; /* Text */
-    }
-    .content-block:nth-of-type(2) .secondary-section > div:last-child {
-        order: 1; /* Bild */
-    }
-
-
-
-
-
-}
-
-
-/* 3 Bulletpoints */
-
-.bulletpoints{
-    display: flex;
-    justify-content: space-between ;
-    align-items: top;
-    padding: 125px 40px 106px;}
-
-.bulletpoints-width{max-width: 427px;
-    flex: 1; padding-right: 20px}
-
-.bulletpoints-header{display: flex;
-    gap: 15px;margin-bottom: 22px;
-    align-items: center;}
-
-@media (max-width: 767px) {
-    .bulletpoints {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .bulletpoints-width {
-        max-width: 100%;
-        padding-right: 0;
-    }
-}
-
-
-/*Parallax-Sektion*/
-
-.parallax-background {
-    background-image: url("img/nastuh-abootalebi-eHD8Y1Znfpk-unsplash.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 30px 20px;
-    max-width: 100%;
+.gallery-nav .icon-Icon{
+    color: var(--accent-color);
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto; /* Vermeidet Überlappung */
-}
-
-.parallax-outer-box{
-    display: flex;
-    justify-content: flex-start; /* Links ausrichten inner-box */
-}
-
-.parallax-inner-box {max-height: 570px;
-    background-color: rgba(var(--base-bg-color-rgb), 0.9);
-    padding:52px 32px;
-    z-index: 2;
-    position: relative;}
-
-.parallax-content{max-width: 510px;}
-
-.parallax-content h2 {
-    margin-bottom: 18px;
-}
-
-.parallax-content ul {
-    padding: 0;
-    list-style: none;
-}
-
-.parallax-content ul > li {
-    margin-bottom: 18px;
-    color: var(--base-color);
-}
-
-.parallax-content ul > li:last-child {
-    margin-bottom: 0;
-}
-
-.icon-check::before {
-    content: "\e905";
-    font-family: 'icomoon';
-    font-style: normal;
-    font-weight: normal;
-    speak: none;
-    display: inline-block;
-    margin-right: 8px;
-}
-
-/*Admin-Bar nach unten schieben*/
-
-@media screen and (min-width: 600px) {
-    body.admin-bar header {
-        top: 32px;
-    }
-}
-
-@media screen and (max-width: 599px) {
-    body.admin-bar header {
-        top: 46px;
-    }
-}
-
-/*CSS für Single Post Layout*/
-
-.post-hero {
-    background-position: center;
-    background-repeat: no-repeat;
-    max-width: 100%;
-    height: 100vh;
-    color:var(--base-bg-color);
-    position: relative;
-    display: flex; /* Flexbox aktivieren */
-    align-items: center; /* vertikal zentrieren */
-    aspect-ratio: unset;
-    margin-bottom: 140px;
-}
-
-.post-hero .post-above-level {
-    z-index: 2;
-}
-
-.post-content-block{margin: 0;
-}
-
-.post-content-block > * {
-    margin-bottom: 30px;
-}
-
-.post-section-margin{padding-top: 99px;
-    padding-bottom: 125px;}
-
-.post-secondary-section{
-    display: flex;
-    align-items: flex-start;
-}
-
-
-.post-secondary-section > div {
-    flex: 1;
-    padding: 0 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Inhalt oben ausrichten */
-}
-
-.post-secondary-section .headline h2:first-child {
-    margin-top: 0;
-}
-
-
-.post-hero .umbruch a,
-.post-hero .umbruch a:visited {
-    font-weight: bold;
     text-decoration: none;
 }
 
-.post-hero .umbruch a:hover {
-    text-decoration: underline;
+.icon-Icon.wp-block-query-pagination-previous
+{transform: rotate(180deg);}
+
+
+.is-arrow-arrow {
+    display: none !important;
 }
 
-.post-hero .umbruch a:active,
-.post-hero .umbruch a:focus {
-    color: var(--focus-outline-color);
-}
 
-@media (max-width: 1023px) {
-    /* Überschreibe das Grid/Flex-Layout von WP */
-    .post-secondary-section.is-layout-grid,
-    .post-secondary-section.is-layout-flex {
-        display: flex !important;       /* Grid ausschalten, Flex einschalten */
-        flex-direction: column !important;
+
+
+
+
+
+
+
+        /*Kundenstimme*/
+
+    #feedback{
+        max-width: 654px;
+        text-align: center;
     }
+
+    #feedback-headline{text-transform: uppercase;
+        margin-bottom: 40px;
+        font-size: var(--font-size-h3);
+        font-family: var(--font-primary);
+        color: #2F2F2A;}
+
+    #feedback-quote{margin:0 30px 15px 30px;
+    }
+
+    #feedback-name{font-weight: bold;}
+
+
+
+    /*Footer*/
+
+    #footer-background{background-color:
+            var(--primary-color); padding: 80px 0;}
+
+    #footer-section{
+        display: grid;
+        grid-template-columns: 1fr 1fr;}
+
+    .footer-logo img{
+        width: 100%;
+        max-width: 328px;
+        min-width: 108px;
+        min-height: 27px;
+        height: auto;
+        padding-right: 40px}
+
+    .footer-links{display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap:20px;}
+
+    .footer-links p{color: var(--focus-outline-color);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        font-family: var(--font-primary);}
+
+    .footer-links ul{list-style: none;
+        padding: 0; margin: 0}
+
+    .footer-links ul a{text-decoration: none;
+        color: var(--base-bg-color);
+        font-family: var(--font-primary);}
+
+    .footer-links ul li{margin-bottom: 5px;}
+
+    .icon-arrow-4{
+        color: var(--base-bg-color);display: inline-block;
+        transform: scaleX(-1); margin-right: 5px;
+    }
+    .icon-arrow-4::before {
+        content: "\e903";
+        font-family: "icomoon";
+        font-size: 1em;
+        display: inline-block;
+    }
+
+
+    /*Footer-Responsiv*/
+
+    @media (max-width: 767px) {
+        #footer-section {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin: 0 auto 20px;
+        }
+
+        .footer-links {
+            grid-template-columns: 1fr 1fr;
+            text-align: left;
+        }
+
+        .footer-links ul {
+            text-align: left;
+        }
+    }
+
+
+    /* Gallery Grid Section responsiv machen*/
+
+    /* Ab 768px: Zwei Spalten (Tablet) */
+    @media (min-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    }
+
+    /* Ab 1024px: Drei Spalten (Desktop) */
+    @media (min-width: 1024px) {
+        .gallery-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0; /* hier kannst du den Abstand ggf. anpassen */
+        }
+    }
+
+    /* Das <li> fungiert als "Positionierungs-Container" */
+    .gallery-grid li {
+        position: relative;
+        margin: 0 ;
+        padding: 0 ;
+    }
+
+    .image-text {
+        position: absolute;
+        bottom: 17px;
+        left: 17px;
+        color: var(--base-bg-color);
+        font-family: var(--font-primary);
+        font-size: var(--font-size-30);
+        text-transform: uppercase;
+        z-index: 2; /* höher als both Overlays */
+        opacity: 1; /* auf Mobile / Tablet sofort sichtbar */
+        transition: opacity 0.3s ease;
+        font-weight: var(--font-weight-bold);
+    }
+
+    @media (min-width: 1024px) {
+        .image-text {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .image-overlay::after {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Direktes Geschwister: "Nach dem :hover auf .image-overlay" */
+        .image-overlay:hover::after {
+            opacity: 1;
+        }
+        .image-overlay:hover + .image-text {
+            opacity: 1;
+        }
+    }
+
+    /*Mobile Navigation/Burgerbutton*/
+
+    /* Burger-Button */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 24px;
+        margin-right: 20px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1100;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--secondary-color);
+        transition: all 0.3s ease;
+    }
+
+    .menu-toggle-checkbox {
+        display: none;
+    }
+
+    /* X-Button (sichtbar bei geöffnetem mobilem Menü) */
+    .menu-close {
+        display: none; /* Standardmäßig ausgeblendet */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 20px;
+        font-size: 1.5rem;
+        color: var(--secondary-color);
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    /* Sichtbarkeit von Buttons steuern */
+    .menu-toggle-checkbox:checked ~ .menu-toggle {
+        display: none; /* Burger-Button ausblenden */
+    }
+
+    .menu-toggle-checkbox:checked ~ .menu-close {
+        display: block; /* X-Button anzeigen */
+    }
+
+
+
+    /* Burger-Button und X ausblenden in der Desktop-Ansicht */
+    @media (min-width: 768px) {
+        .menu-toggle,
+        .menu-close {
+            display: none; /* Beide Buttons ausblenden */
+        }
+    }
+    /*neu*/
+    @media (max-width: 767px) {
+        /* Der Wrapper: füllt 100% Breite, ist schwarz und fixiert */
+        .mobile-menu-wrapper {
+            display: none; /* Standard: unsichtbar */
+            position: fixed;
+            top: 90px;         /* knapp unter dem Header */
+            left: 0;
+            margin-top: 2px;
+            width: 100%;
+            height: calc(100% - 90px);
+            background: var(--primary-color);
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Bei aktivierter Checkbox einblenden */
+        .menu-toggle-checkbox:checked ~ .mobile-menu-wrapper {
+            display: block;
+            transform: translateY(0);
+        }
+
+        /* Das eigentliche UL-Menü in Blau (nur 90% davon) */
+        .navigation {
+            width: 90%;
+            height: 100%;
+            background: var(--accent-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 0;
+        }
+
+        /* Navigation-Elemente stylen */
+        .navigation li {
+            list-style: none;
+            border-bottom: 1px solid var(--focus-outline-color);
+            padding: 15px 0;
+        }
+        .navigation a {
+            display: block;
+            padding-left: 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+        }
+    }
+    /*neu*/
+
+    @media (max-width: 767px) {
+        .dropdown-label {
+            display: flex;                 /* Text links, Icon rechts */
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;                   /* Füllt das <li> komplett aus */
+            padding: 0 20px;           /* Klickfläche definieren */
+            cursor: pointer;
+        }
+
+        .dropdown-label .icon-Icon {
+            color: var(--base-bg-color);   /* z.B. Weiß */
+            transform: rotate(90deg);      /* Drehung wenn gewünscht */
+            display: inline-flex;
+        }
+
+        /* Per Checkbox-Klick öffnen */
+        .dropdown-toggle:checked ~ .dropdown-menu {
+            display: block;
+        }
+
+        .sub-menu
+        {position: static;
+            width: 100%;
+            background-color: var(--focus-outline-color);
+            list-style: none;
+            display: none;}
+
+        .sub-menu a{
+            text-transform: none;
+            font: var(--font-primary);
+            color: var(--primary-color);
+        }
+    }
+
+    @media (min-width: 768px) {
+        .nav-menu li:hover .sub-menu {
+            display: block;
+        }
+    }
+
+
+    /*Startseite CSS*/
+
+    /* zweite u dritte Section unter hero = secondary-section*/
+
+    .content-block{padding: 106px 0;
+    }
+
+    .secondary-section{
+        display: flex;
+        align-items: flex-start;
+    }
+
+    /* Alle direkten Kinder (jede Spalte) bekommt flex, um Inhalt zu zentrieren */
+    .secondary-section > div {
+        flex: 1;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Inhalt oben ausrichten */
+    }
+
+    .secondary-section .headline h2:first-child {
+        margin-top: 0;
+    }
+
+    .secondary-section-two-bg-color {background-color: var(--secondary-color);}
+
+    .secondary-button {
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+        border: none;
+        display: inline-block;
+        align-self: flex-start;
+        margin-top: 25px;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 10px 28px;
+    }
+
+    @media (max-width: 1023px) {
+        /* 1) Für alle secondary-sections: einspaltiges Layout */
+        .secondary-section {
+            flex-direction: column;
+        }
+        .secondary-section .headline h2 {
+            padding-top: 20px;
+        }
+
+        /* 2) Nur im ersten .content-block (im DOM die 2. <section>), Reihenfolge tauschen */
+        .content-block:nth-of-type(2) .secondary-section > div:first-child {
+            order: 2; /* Text */
+        }
+        .content-block:nth-of-type(2) .secondary-section > div:last-child {
+            order: 1; /* Bild */
+        }
+
+
+
+
+
+    }
+
+
+    /* 3 Bulletpoints */
+
+    .bulletpoints{
+        display: flex;
+        justify-content: space-between ;
+        align-items: top;
+        padding: 125px 40px 106px;}
+
+    .bulletpoints-width{max-width: 427px;
+        flex: 1; padding-right: 20px}
+
+    .bulletpoints-header{display: flex;
+        gap: 15px;margin-bottom: 22px;
+        align-items: center;}
+
+    @media (max-width: 767px) {
+        .bulletpoints {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .bulletpoints-width {
+            max-width: 100%;
+            padding-right: 0;
+        }
+    }
+
+
+    /*Parallax-Sektion*/
+
+    .parallax-background {
+        background-image: url("img/nastuh-abootalebi-eHD8Y1Znfpk-unsplash.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 30px 20px;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto; /* Vermeidet Überlappung */
+    }
+
+    .parallax-outer-box{
+        display: flex;
+        justify-content: flex-start; /* Links ausrichten inner-box */
+    }
+
+    .parallax-inner-box {max-height: 570px;
+        background-color: rgba(var(--base-bg-color-rgb), 0.9);
+        padding:52px 32px;
+        z-index: 2;
+        position: relative;}
+
+    .parallax-content{max-width: 510px;}
+
+    .parallax-content h2 {
+        margin-bottom: 18px;
+    }
+
+    .parallax-content ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    .parallax-content ul > li {
+        margin-bottom: 18px;
+        color: var(--base-color);
+    }
+
+    .parallax-content ul > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .icon-check::before {
+        content: "\e905";
+        font-family: 'icomoon';
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    /*Admin-Bar nach unten schieben*/
+
+    @media screen and (min-width: 600px) {
+        body.admin-bar header {
+            top: 32px;
+        }
+    }
+
+    @media screen and (max-width: 599px) {
+        body.admin-bar header {
+            top: 46px;
+        }
+    }
+
+    /*CSS für Single Post Layout*/
+
+    .post-hero {
+        background-position: center;
+        background-repeat: no-repeat;
+        max-width: 100%;
+        height: 100vh;
+        color:var(--base-bg-color);
+        position: relative;
+        display: flex; /* Flexbox aktivieren */
+        align-items: center; /* vertikal zentrieren */
+        aspect-ratio: unset;
+        margin-bottom: 140px;
+    }
+
+    .post-hero .post-above-level {
+        z-index: 2;
+    }
+
+    .post-content-block{margin: 0;
+    }
+
+    .post-content-block > * {
+        margin-bottom: 30px;
+    }
+
+    .post-section-margin{padding-top: 99px;
+        padding-bottom: 125px;}
+
+    .post-secondary-section{
+        display: flex;
+        align-items: flex-start;
+    }
+
+
+    .post-secondary-section > div {
+        flex: 1;
+        padding: 0 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Inhalt oben ausrichten */
+    }
+
+    .post-secondary-section .headline h2:first-child {
+        margin-top: 0;
+    }
+
+
+    .post-hero .umbruch a,
+    .post-hero .umbruch a:visited {
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .post-hero .umbruch a:hover {
+        text-decoration: underline;
+    }
+
+    .post-hero .umbruch a:active,
+    .post-hero .umbruch a:focus {
+        color: var(--focus-outline-color);
+    }
+
+    @media (max-width: 1023px) {
+        /* Überschreibe das Grid/Flex-Layout von WP */
+        .post-secondary-section.is-layout-grid,
+        .post-secondary-section.is-layout-flex {
+            display: flex !important;       /* Grid ausschalten, Flex einschalten */
+            flex-direction: column !important;
+        }
 
         /* Greift nur beim ersten h2 innerhalb seiner Eltern-Spalte */
         .post-secondary-section > div h2:first-of-type {
             margin-top: 60px;
         }
 
-    .post-secondary-section > div {
-        padding: 0px;
+        .post-secondary-section > div {
+            padding: 0px;
 
+        }
     }
 }

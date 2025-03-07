@@ -4,6 +4,30 @@
   "settings": {
     "spacing": {
       "blockGap": "10px"
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#0F0100",
+          "name": "Primary"
+        },
+        {
+          "slug": "accent",
+          "color": "#3B6C9B",
+          "name": "Accent"
+        },
+        {
+          "slug": "focus-outline",
+          "color": "#8AB1CC",
+          "name": "Focus Outline"
+        },
+        {
+          "slug": "secondary",
+          "color": "#F5F5F5",
+          "name": "Secondary"
+        }
+      ]
     }
   }
 }
