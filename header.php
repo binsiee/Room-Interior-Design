@@ -29,29 +29,31 @@ language_attributes(); ?> class="no-js">
         } ?>
     </div>
 
-        <!-- Versteckte Checkbox -->
-    <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
 
-        <!-- Label für Burger-Button (geschlossen) -->
-    <label for="menu-toggle" class="menu-toggle">
+    <!-- Label für Burger-Button (geschlossen) -->
+    <button class="menu-toggle" aria-label="Open menu">
         <span></span>
         <span></span>
         <span></span>
-        <span class="screen-reader-text"><?php _e('Navigation öffnen/schließen', 'interior-design-translation'); ?></span>
-    </label>
+    </button>
 
-    <?php
+    <!-- Button für X-Button (offen) -->
+    <button class="menu-close" aria-label="Close menu">
+        ✕
+    </button>
 
-    wp_nav_menu([
-        'theme_location' => 'primary',  // wurde in der functions.php festgelegt "register_nav_menus()"
-        'container' => false,           // true würde eine <div> um die <ul> des wp_nav_menu() erzeugen
-        'menu_class' => 'nav-menu',     // Klassenname der ul: <ul class="nav-menu">
-        'menu_id' => 'nav-main',        // ID der ul: <ul id="nav-main">
-        'depth' => 2,                   // Anzahl der Menüebenen die ausgegeben werden
-        'fallback_cb' => false          // wenn im WordPress kein Menü als "Footer Navigation" zugewiesen wurde (Checkbox), wird keine Navigation ausgegeben. Default wäre die Ausgebe der WordPress Funktion "wp_page_menu()" (https://developer.wordpress.org/reference/functions/wp_page_menu/)
-        //'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s<li><a href="#">DE</a><a href="#">EN</a></li></ul>',
-    ]);
-    ?>
+    <div class="mobile-menu-wrapper">
+        <?php
+        wp_nav_menu([
+            'theme_location' => 'primary',           // In functions.php registriert
+            'container'      => false,                // Kein zusätzliches Container-Element
+            'menu_class'     => 'navigation nav-menu',  // Klassen, die bereits verwendet werden
+            'depth'          => 2,                    // Zwei Ebenen (Hauptmenü und Dropdown)
+            'fallback_cb'    => false,
+            'walker'         => new My_Dropdown_Walker() // Unser individueller Walker
+        ]);
+        ?>
+    </div>
 
 </nav>
-    </header>
+</header>

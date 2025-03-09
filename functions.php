@@ -165,7 +165,7 @@ add_action('wp_enqueue_scripts', function () use ($version) {
     // JS im Footer einfügen
     wp_enqueue_script(
         'theme-script',
-        get_template_directory_uri() . '/assets/js/scripts.js',
+        get_template_directory_uri() . '/src/js/burger.js',
         [],
         $version,
         true
@@ -570,6 +570,110 @@ function interior_register_testimonial_cpt() {
 }
 add_action( 'init', 'interior_register_testimonial_cpt' );
 
+
+class My_Dropdown_Walker extends Walker_Nav_Menu
+{
+    // Erzeugt den Anfang des Untermenüs mit der gewünschten Klasse
+    public function start_lvl(&$output, $depth = 0, $args = array())
+    {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent<ul class=\"dropdown-menu\">\n";
+    }
+
+    // Erzeugt das Markup für einzelne Menüeinträge
+    public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+    {
+        $indent = ($depth) ? str_repeat("\t", $depth) : '';
+
+        $classes = empty($item->classes) ? array() : (array)$item->classes;
+        // Standardklasse für Menüeintrag
+        $classes[] = 'menu-item-' . $item->ID;
+
+        // Wenn das Element Kinder hat, fügen wir zusätzlich "dropdown" hinzu
+        if (in_array('menu-item-has-children', $classes)) {
+            $classes[] = 'dropdown';
+        }
+
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));
+        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+
+        $id = apply_filters('nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args, $depth);
+        $id = $id ? ' id="' . esc_attr($id) . '"' : '';
+
+        $output .= $indent . '<li' . $id . $class_names . '>';
+
+        // Wenn das Element Kinder hat, ersetzen wir den Link durch einen Button
+        if ( in_array('menu-item-has-children', $classes) ) {
+            $title = apply_filters( 'the_title', $item->title, $item->ID );
+            $url = ! empty( $item->url ) ? $item->url : '#';
+            // Ausgabe des anklickbaren Links für die Seite "Referenzen"
+            $output .= '<a href="' . esc_url( $url ) . '" class="dropdown-link">' . $title . '</a>';
+            // Ausgabe des Toggle-Buttons für das Dropdown
+            $output .= '<button type="button" class="dropdown-label" aria-expanded="false">';
+            $output .= '<span class="icon-Icon"></span>';
+            $output .= '</button>';
+        } else {
+            // Normale Linkausgabe für Menüeinträge ohne Untermenü
+            $atts = array();
+            $atts['title'] = !empty($item->attr_title) ? $item->attr_title : '';
+            $atts['target'] = !empty($item->target) ? $item->target : '';
+            $atts['rel'] = !empty($item->xfn) ? $item->xfn : '';
+            $atts['href'] = !empty($item->url) ? $item->url : '';
+
+            $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
+            $attributes = '';
+            foreach ($atts as $attr => $value) {
+                if (!empty($value)) {
+                    $value = ('href' === $attr) ? esc_url($value) : esc_attr($value);
+                    $attributes .= ' ' . $attr . '="' . $value . '"';
+                }
+            }
+
+            $title = apply_filters('the_title', $item->title, $item->ID);
+            $output .= '<a' . $attributes . '>';
+            $output .= $title;
+            $output .= '</a>';
+        }
+    }
+
+    public function end_el(&$output, $item, $depth = 0, $args = array())
+    {
+        $output .= "</li>\n";
+    }
+}
+
+// Shortcode für dynamischen Referenzen-Filter
+function references_filter_shortcode() {
+    // Hole alle Kategorien (außer "Uncategorized")
+    // 'hide_empty' => true zeigt nur Kategorien an, in denen mind. 1 Beitrag ist
+    // 'exclude' => array(1) schließt die Standardkategorie (ID = 1, meist "Uncategorized") aus
+    $args = array(
+        'taxonomy'   => 'category',
+        'hide_empty' => true,
+        'exclude'    => array(1), // ID der Standard-Kategorie
+    );
+    $categories = get_categories($args);
+
+    // HTML-Ausgabe zwischenspeichern
+    ob_start();
+    ?>
+    <div class="filter-bar main-container" style="margin-bottom: 30px;">
+        <!-- Button für ALLE -->
+        <button data-filter="all">Alle</button>
+
+        <!-- Schleife über alle gefundenen Kategorien -->
+        <?php foreach ($categories as $cat) : ?>
+            <button data-filter="<?php echo esc_attr($cat->slug); ?>">
+                <?php echo esc_html($cat->name); ?>
+            </button>
+        <?php endforeach; ?>
+    </div>
+    <?php
+
+    // Puffer zurückgeben
+    return ob_get_clean();
+}
+add_shortcode('references_filter', 'references_filter_shortcode');
 
 
 

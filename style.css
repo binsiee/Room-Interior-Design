@@ -195,7 +195,6 @@ nav.container {
     gap: 2rem;
     padding-right: 20px;
     margin: 0;
-    align-items: center;
 }
 
 .nav-menu li{position: relative;}
@@ -208,10 +207,12 @@ nav.container {
 
 /* Hover-Effekt für alle Hauptmenüpunkte */
 .nav-menu li > a:hover {
-    color: var(--focus-outline-color);
+    color: var(--accent-color);
 }
 
-.sub-menu
+
+
+.dropdown-menu
 {position: absolute;
     top: 100%;
     background-color: var(--focus-outline-color);
@@ -219,7 +220,7 @@ nav.container {
     padding: 10px 30px 10px 10px;
     display: none;}
 
-.sub-menu a{
+.dropdown-menu a{
     text-transform: none;
     font-size: var(--font-size-17);
     font: var(--font-primary);
@@ -228,7 +229,7 @@ nav.container {
 
 
 /* Hover-Effekt im Dropdown*/
-.sub-menu a:hover {
+.dropdown-menu a:hover {
     color: var(--accent-color);
 }
 
@@ -365,7 +366,7 @@ nav.container {
 
 /* Basis-Styles für mobile Geräte */
 .gallery-grid {
-    padding-top: 125px;
+    padding-top: 50px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px; /* kleinerer Abstand auf mobilen Geräten */
@@ -670,14 +671,7 @@ nav.container {
         z-index: 1100;
     }
 
-    /* Sichtbarkeit von Buttons steuern */
-    .menu-toggle-checkbox:checked ~ .menu-toggle {
-        display: none; /* Burger-Button ausblenden */
-    }
 
-    .menu-toggle-checkbox:checked ~ .menu-close {
-        display: block; /* X-Button anzeigen */
-    }
 
 
 
@@ -705,10 +699,28 @@ nav.container {
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        /* Bei aktivierter Checkbox einblenden */
-        .menu-toggle-checkbox:checked ~ .mobile-menu-wrapper {
+        /* Wenn das Menü geöffnet ist (Klasse "menu-open" am Body) */
+        body.menu-open .menu-toggle {
+            display: none;
+        }
+
+        body.menu-open .menu-close {
+            display: block;
+        }
+
+        /* Für den mobilen Menü-Wrapper (Klasse "open") */
+        .mobile-menu-wrapper.open {
             display: block;
             transform: translateY(0);
+        }
+
+        button.menu-toggle,
+        button.menu-close {
+            background: none;
+            border: none;
+            padding: 0;
+            outline: none;
+            cursor: pointer;
         }
 
         /* Das eigentliche UL-Menü in Blau (nur 90% davon) */
@@ -761,16 +773,18 @@ nav.container {
             display: block;
         }
 
-        .sub-menu
+        .dropdown-menu
         {position: static;
             width: 100%;
             background-color: var(--focus-outline-color);
             list-style: none;
+            padding: 10px 30px 10px 10px;
             display: none;}
 
-        .sub-menu a{
+        .dropdown-menu a{
             text-transform: none;
             font: var(--font-primary);
+            font-size: var(--font-size-17);
             color: var(--primary-color);
         }
     }
@@ -1031,4 +1045,54 @@ nav.container {
 
         }
     }
+
+@media (min-width: 768px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
 }
+
+/* Hover-Effekt im Dropdown*/
+.dropdown-menu a:hover {
+    color: var(--accent-color);
+}
+
+@media (max-width: 767px) {
+    /* Dropdown öffnen, wenn der Eltern-LI die Klasse "open" besitzt */
+    .dropdown.open .dropdown-menu {
+        display: block;
+    }
+}
+
+button.dropdown-label {
+    /* Reset der Button-Standardeinstellungen */
+    background: none;
+    border: none;
+    margin: 0;
+    outline: none;
+
+    /* Wiederherstellung des ursprünglichen Stylings */
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;   /* Wieder den ursprünglichen Innenabstand */
+    cursor: pointer;
+    font-size: inherit; /* Sicherstellen, dass die Schriftgröße passt */
+}
+
+@media (min-width: 768px) {
+    button.dropdown-label {
+        padding: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Nur die direkten Kinder der .nav-menu (erste Ebene) beim Hover */
+    .nav-menu > li > a:hover {
+        color: var(--focus-outline-color);
+    }
+}
+

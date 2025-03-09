@@ -154,20 +154,5 @@ function register_contact_page_pattern()
 add_action('init', 'register_contact_page_pattern');
 
 
-/**
- * Title: Referenzen-Layout
- * Slug: dein-theme/referenzen-layout
- * Categories: text, featured
- */
 
-register_block_pattern(
-    'room-interior-design/referenzen-layout',
-    array(
-        'title' => __('Referenzen-Layout', 'textdomain'),
-        'description' => _x('Großer Titel, Filterbuttons, 6er-Galerie.', 'Block pattern description', 'textdomain'),
-        'content' => <<<'HTML'
-<!-- Hier kommt der komplette HTML-Block-Code rein, den du aus dem Editor kopiert hast -->
-HTML
-    )
-);
 

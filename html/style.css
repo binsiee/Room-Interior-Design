@@ -245,11 +245,7 @@ display: none;}
     color: var(--accent-color);
 }
 
-/* Markierung Current */
-.navigation .current {
-    font-weight: bold;
-    color: var(--accent-color);
-}
+
 
 .dropdown-icon, .dropdown-toggle{display: none;}
 
@@ -729,11 +725,13 @@ padding-right: 40px}
         width: 100%;
         background-color: var(--focus-outline-color);
         list-style: none;
+        padding: 10px 30px 10px 10px;
         display: none;}
 
     .dropdown-menu a{
         text-transform: none;
         font: var(--font-primary);
+        font-size: var(--font-size-17);
         color: var(--primary-color);
     }
 }
@@ -876,3 +874,5 @@ align-items: center;}
 .parallax-content ul > li:last-child {
     margin-bottom: 0;
 }
+
+
